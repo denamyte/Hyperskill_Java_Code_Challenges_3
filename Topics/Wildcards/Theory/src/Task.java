@@ -2,6 +2,6 @@
 
 public class Task {
   public static void main(String[] args) {
-    System.out.println(1);
+    // put your code here
   }
 }
