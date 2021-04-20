@@ -101,8 +101,8 @@ public void lowerBoundedMethod(List&lt;? super Album&gt; albums) {
     You cannot use both a lower and an upper bound in wildcards or type bounds.
   </div>
   <p></p> 
-  <p>Note that a class or interface used with the <code class="language-java">extends</code> or <code class="language-java">super</code> keyword is itself included in the inheritance. For example, B<code class="language-java">ox&lt;T&gt;</code> is compatible and covariant with <code class="language-java">Box&lt;? extends T&gt; or Box&lt;? super T&gt;</code>.</p> 
-  <p>Also note that the unbounded wildcard <code class="language-java">?</code> is equivalent to<code class="language-java">: ? extends Object</code>.</p> 
+  <p>Note that a class or interface used with the <code class="language-java">extends</code> or <code class="language-java">super</code> keyword is itself included in the inheritance. For example, <code class="language-java">Box&lt;T&gt;</code> is compatible and covariant with <code class="language-java">Box&lt;? extends T&gt; or Box&lt;? super T&gt;</code>.</p> 
+  <p>Also note that the unbounded wildcard <code class="language-java">?</code> is equivalent to <code class="language-java">? extends Object</code>.</p> 
   <p></p>
   <div class="alert alert-primary">
     Remember that the purpose of inheritance prohibition in generics is to prevent run-time errors; otherwise, generics would lose their type safety.
@@ -127,7 +127,7 @@ private static &lt;T&gt; void reverseCaptured(List&lt;T&gt; list) {
     list.set(i, tmp.get(list.size() - i - 1));
   }
 }</code></pre> 
-  <p>Here we introduced a helper method r<code class="language-java">everseCaptured</code> which has a parameter of a certain type <code class="language-java">T</code> for all elements of a list. The method is error-free because it is merely a generic method; it does not face any restrictions due to wildcards.</p> 
+  <p>Here we introduced a helper method <code class="language-java">reverseCaptured</code> which has a parameter of a certain type <code class="language-java">T</code> for all elements of a list. The method is error-free because it is merely a generic method; it does not face any restrictions due to wildcards.</p> 
   <h2>Conclusion</h2> 
   <p>Wildcards are a convenient and safe way of implementing an equivalent of inheritance in Generics. They are declared with the <code class="language-java">&lt;?&gt;</code> symbol and are widely used with upper or lower bounds to restrict type parameters.</p>
  </body>
