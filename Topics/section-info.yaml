@@ -3,3 +3,5 @@ content:
 - Type Bounds
 - Knuth-Morris-Pratt algorithm in Java
 - Wildcards
+- Collectors
+- Type Erasure
