@@ -11,7 +11,7 @@ List&lt;String&gt; strings = new List&lt;&gt;();
 List objects = new List();</code></pre> 
   <p>The transformation process is called type erasure. Let's take a closer look at what it actually does.</p> 
   <h2>Generics replacement</h2> 
-  <p>First of all, type erasure replaces parameters of generic types with their bounds. IUnbounded types are replaced by <code class="language-java">Object</code>. This means that information about types is erased when a program is translated into byte code. As a result, byte code contains only ordinary non-generic classes and interfaces.</p> 
+  <p>First of all, type erasure replaces parameters of generic types with their bounds. Unbounded types are replaced by <code class="language-java">Object</code>. This means that information about types is erased when a program is translated into byte code. As a result, byte code contains only ordinary non-generic classes and interfaces.</p> 
   <p>Let's consider the generic class <code class="language-java">Data</code>:</p> 
   <pre><code class="language-java">class Data&lt;T&gt; {
     private T data;
