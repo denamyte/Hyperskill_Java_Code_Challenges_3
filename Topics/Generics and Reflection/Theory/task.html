@@ -1,0 +1,134 @@
+<html>
+ <head></head>
+ <body>
+  <p><strong>Type erasure</strong> process removes information about parameter types of generic classes at compile time. If you are given an object of generic class at runtime, normally it is not possible to examine which parameter is actually used. However, if you have access to an object's reference, <strong>reflection</strong> may provide information about the parameters of the object.</p> 
+  <p>Reflection has a set of classes describing the internal implementation details of a class. There are <code class="language-java">Class</code>, <code class="language-java">Method</code> and <code class="language-java">Field</code>. So if you have an object's reference you can access these classes and then get information about parameters of generic types.</p> 
+  <pre><code class="language-java">void testArgument(SomeClass object) throws Exception {
+    Class clazz = object.getClass();
+    Field field = clazz.getDeclaredField("fieldName");
+    Method method = clazz.getDeclaredMethod("methodName");
+}</code></pre> 
+  <h2>Print parameters</h2> 
+  <p>The simplest way to obtain full information about parameters is just using <code class="language-java">toGenericString</code> method. It is common for <code class="language-java">Field</code>, <code class="language-java">Method</code> and <code class="language-java">Class</code>. Let's look at the class:</p> 
+  <pre><code class="language-java">class SomeClass&lt;T&gt; {
+    public Map&lt;String, Integer&gt; map;
+    public List&lt;? extends Number&gt; getList(T obj);
+}</code></pre> 
+  <p>The following code snippet shows how to print details of a class at runtime:</p> 
+  <pre><code class="language-java">System.out.println(SomeClass.class.toGenericString()); // class SomeClass&lt;T&gt;
+
+Field mapField = SomeClass.class.getDeclaredField("map");
+System.out.println(mapField.toGenericString()); // public java.util.Map&lt;java.lang.String, java.lang.Integer&gt; SomeClass.map
+
+Method method = SomeClass.class.getDeclaredMethod("getList");
+System.out.println(method.toGenericString()); // public java.util.List&lt;? extends java.lang.Number&gt; SomeClass.getList(T obj)</code></pre> 
+  <h2>Parameterized type</h2> 
+  <p><code class="language-java">toGenericString</code> method is quite useful, but sometimes you need to fetch parameters one by one instead of getting a summary string. For such cases reflection classes have <code class="language-java">ParameterizedType</code> interface. It describes parameterized types and has the method <code class="language-java">getActualTypeArguments</code> providing an array of parameter types.</p> 
+  <p>To illustrate how <code class="language-java">ParameterizedType</code> can be obtained, let's consider cases based on the class:</p> 
+  <pre><code class="language-java">public class DataHolder {
+    public Map&lt;String, Integer&gt; data;
+
+    public void setData(Map&lt;String, Integer&gt; data) {
+        this.data = data;
+    }
+
+    public Map&lt;String, Integer&gt; getData() {
+        return data;
+    }
+}</code></pre> 
+  <p>Suppose you want to discover which parameter is used by the <code class="language-java">data</code> field. <code class="language-java">getGenericType</code> method of <code class="language-java">Field</code> class produces an object of <code class="language-java">ParameterizedType</code> interface, containing such information</p> 
+  <pre><code class="language-java">Field field = DataHolder.class.getDeclaredField("data");
+ParameterizedType parameterizedType = (ParameterizedType) field.getGenericType();
+
+Type rawType = parameterizedType.getRawType(); // interface java.util.Map
+Type[] argumentTypes = parameterizedType.getActualTypeArguments(); // class java.lang.String, class java.lang.Integer
+
+// or you can get type name as a String
+String arg1TypeName = argumentTypes[0].getTypeName(); // java.lang.String
+String arg2TypeName = argumentTypes[1].getTypeName(); // java.lang.Integer</code></pre> 
+  <p>A method may have parameterized argument and return type. For both cases <code class="language-java">Method</code> class also provides <code class="language-java">ParameterizedType</code>. For instance, it is possible to examine the return type of <code class="language-java">getData</code> method</p> 
+  <pre><code class="language-java">Method method = DataHolder.class.getMethod("getData");
+ParameterizedType parameterizedType = (ParameterizedType) method.getGenericReturnType();</code></pre> 
+  <p>or arguments of <code class="language-java">setData</code> method</p> 
+  <pre><code class="language-java">Method method = DataHolder.class.getMethod("setData", Map.class);
+Type[] parameterTypes = method.getGenericParameterTypes();
+ParameterizedType parameterizedType = (ParameterizedType) parameterTypes[0]; // method has a single parameter</code></pre> 
+  <h2>Wildcard type</h2> 
+  <p><code class="language-java">ParameterizedType</code> is good enough for extracting parameters of types like <code class="language-java">List&lt;String&gt;</code> or <code class="language-java">Map&lt;K, V&gt;</code>, but it lacks detailing when applied to wildcard. In other words, it has no methods for getting bounds.</p> 
+  <p>Imagine there is a field of a wildcard type <code class="language-java">List&lt;? extends Number&gt; wildcardField</code>. Using <code class="language-java">ParameterizedType</code> you can obtain only <code class="language-java">? extends Number</code> parameter:</p> 
+  <pre><code class="language-java">Field field = ...
+ParameterizedType parameterizedType = (ParameterizedType) field.getGenericType();
+Type type = parameterizedType.getActualTypeArguments()[0]; // ? extends Number</code></pre> 
+  <p>However, reflection allows finding bounds of the wildcard type via <code class="language-java">WildcardType</code> interface:</p> 
+  <pre><code class="language-java">WildcardType wildcardType = (WildcardType) parameterizedType.getActualTypeArguments()[0]; // There is a single parameter
+System.out.println(wildcardType.getLowerBounds()); // empty
+System.out.println(wildcardType.getUpperBounds()); // Number</code></pre> 
+  <h2>Type variable</h2> 
+  <p>We have covered how to analyze parameterized class <code class="language-java">DataHolder</code>. Let's take a look at its generic version</p> 
+  <pre><code class="language-java">class GenericDataHolder&lt;K extends String, V extends Number&gt; {
+    public Map&lt;K, V&gt; data;
+
+    public void setData(Map&lt;K, V&gt; data) {
+        this.data = data;
+    }
+
+    public Map&lt;K, V&gt; getData() {
+        return data;
+    }
+}</code></pre> 
+  <p>For such cases, that contain type variables, e.g. <code class="language-java">&lt;K extends String, V extends Number&gt;</code> <code class="language-java">TypeVariable</code> class is used to retrieve detailed information about types. <code class="language-java">Class</code> and <code class="language-java">Method</code> classes have a method <code class="language-java">getTypeParameters</code>, which provides a list of type variables declared for them. <code class="language-java">TypeVariable</code> class has a method for getting bounds as well as <code class="language-java">WildcardType</code> provides.</p> 
+  <pre><code class="language-java">TypeVariable&lt;Class&lt;GenericDataHolder&gt;&gt;[] typeVariables = GenericDataHolder.class.getTypeParameters();
+System.out.println("Type variables count " + typeVariables.length);
+
+System.out.println(typeVariables[0]); // K
+System.out.println("First type var upper bound " + typeVariables[0].getBounds()[0]); // java.lang.String
+
+System.out.println(typeVariables[1]); // V
+System.out.println("Second type var upper  bound " + typeVariables[1].getBounds()[0]); // java.lang.Number</code></pre> 
+  <h2>Generic Array type</h2> 
+  <p>Like wildcards, generic array type has a special interface <code class="language-java">GenericArrayType</code>. Let's apply it to retrieve the type of <code class="language-java">T[] genericArrayField</code> field:</p> 
+  <pre><code class="language-java">Field field = DataHolder.class.getDeclaredField("genericArrayField");
+GenericArrayType arrayType = (GenericArrayType) field.getGenericType();
+System.out.println(arrayType); // T[]
+System.out.println(arrayType.getGenericComponentType()); // T</code></pre> 
+  <h2>Generic ancestor and interfaces</h2> 
+  <p>Reflection also allows us to obtain types of generic interfaces. Let's consider the example:</p> 
+  <pre><code class="language-java">// Generic interface
+interface GenericInterface&lt;T&gt; {}
+
+// Class that implements generic interface with some type argument
+class SomeClass implements GenericInterface&lt;Boolean&gt; {}
+
+SomeClass.class.getGenericInterfaces(); // GenericInterface&lt;java.lang.Boolean&gt;</code></pre> 
+  <p>The same approach works for getting parameters of parent generic class. The single difference is that you should use <code class="language-java">getGenericSuperclass</code> method.</p> 
+  <h2>Bridge method</h2> 
+  <p>Let's recall the generic class:</p> 
+  <pre><code class="language-java">class Data&lt;T&gt; {
+    private T data;
+
+    public T get() {
+        return data;
+    }
+
+    public void set(T data) {
+        this.data = data;
+    }
+}</code></pre> 
+  <p>and it's successor:</p> 
+  <pre><code class="language-java">public class NumberData extends Data&lt;Number&gt; {
+    public void set(Number number) {
+        System.out.println("NumberData set");
+        super.set(number);
+    }
+}</code></pre> 
+  <p>As you remember the compiler generates bridge methods for <strong>get</strong> and <strong>set</strong>. Generated bridge methods are available in runtime via reflection. Method class has <code class="language-java">isBridge</code> method for checking is it bridge method or not:</p> 
+  <pre><code class="language-java">for (Method method : NumberData.class.getMethods()) {
+    if (method.isBridge()) {
+        System.out.println(method.getName());
+    }
+}</code></pre> 
+  <p>The code snippet prints names of bridge methods only.</p> 
+  <h2>Conclusion</h2> 
+  <p>Type erasure removes information about parameters during the compilation. An object of the generic type is not aware of what parameter is actually used. However, an object reference still holds such data. Reflection makes it possible to retrieve the data. It introduces a set of classes and interfaces providing details about parameters. Another useful application of reflection is revealing of methods which were generated by the compiler, for example, bridge methods.</p>
+ </body>
+</html>

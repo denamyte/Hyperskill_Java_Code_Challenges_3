@@ -6,3 +6,5 @@ content:
 - Collectors
 - Type Erasure
 - Reification
+- Generics and Reflection
+- Manipulating fields and methods
