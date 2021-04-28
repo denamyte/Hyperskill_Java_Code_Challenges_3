@@ -1,7 +1,7 @@
 <html>
  <head></head>
  <body>
-  <p>Generics were introduced to implement generic programming and control type-safety at compile-time. The feature has been available since Java 5. To support backward compatibility with previous Java versions, information about generic types is erased by the compiler.</p> 
+  <p>Generics were introduced to implement generic programming and control type-safety at compile-time. The feature has been available since Java 5. To support backward compatibility with previous Java versions, information about generic types is erased by the compiler. We will cover exactly which types are erased in future topics.</p> 
   <p>This means that at runtime all these objects will have the same type:</p> 
   <pre><code class="language-java">// Generic types
 List&lt;Integer&gt; integers = new List&lt;&gt;();
@@ -66,6 +66,6 @@ String stored = (String) data.get();</code></pre>
 }</code></pre> 
   <p>A bridge method is a synthetic method created by the compiler as part of the type erasure process. It exists in byte code only and not available for direct usage from Java code. Normally you don't directly encounter bridge methods, although sometimes they might appear in a stack trace.</p> 
   <h2>Conclusion</h2> 
-  <p>Type erasure is an operation that the Java Virtual Machine (JVM) runs during the compilation of source code to byte code. It replaces generic type parameters with their upper bounds. It also inserts type casting and generates bridge methods to preserve type safety. Type erasure plays an important role in Java’s implementation of generics.</p>
+  <p>Type erasure is an operation that the Java Virtual Machine (JVM) runs during the compilation of source code to byte code. It replaces generic type parameters with their upper bounds. It also inserts type casting and generates bridge methods to preserve type safety. Type erasure plays an important role in Java's implementation of generics.</p>
  </body>
 </html>

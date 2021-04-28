@@ -1,0 +1,21 @@
+type: code
+files:
+- name: src/Main.java
+  visible: true
+  text: "import java.lang.reflect.ParameterizedType;\nimport java.lang.reflect.Type;\n\
+    \n/**\n * Class to work with\n */\nclass ComparatorInspector {\n\n    /**\n  \
+    \   * Return Type variable that corresponds to the type parameterizing Comparator.\
+    \   \n     *\n     * @param clazz {@link Class} object, should be non null\n \
+    \    * @return {@link Type} object or null if Comparable does not have type parameter\n\
+    \     */\n    public static <T> Type getComparatorType(Class clazz) {\n      \
+    \  // Add implementation\n    }\n\n}"
+  learner_created: false
+- name: src/ComparatorInspector.class
+  visible: true
+  learner_created: true
+feedback_link: https://hyperskill.org/learn/step/2589#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: Tue, 27 Apr 2021 23:48:28 UTC
+record: -1

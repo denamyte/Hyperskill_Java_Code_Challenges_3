@@ -3,7 +3,12 @@ import java.util.List;
 class QualityControl {
 
     public static boolean check(List<Box<? extends Bakery>> boxes) {
-        // Add implementation here	
+        for (Object mayBeBox : boxes) {
+            if (!(mayBeBox instanceof Box) || !(((Box) mayBeBox).get() instanceof Bakery)) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }
