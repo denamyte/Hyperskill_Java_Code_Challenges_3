@@ -1,0 +1,29 @@
+type: code
+files:
+- name: src/Main.java
+  visible: true
+  text: |-
+    class Main {
+        public static void main(String[] args) {
+            // put your code here
+        }
+    }
+  learner_created: false
+- name: src/Main.class
+  visible: true
+  learner_created: true
+- name: src/Main$Task.class
+  visible: true
+  learner_created: true
+- name: src/Main$Balancer.class
+  visible: true
+  learner_created: true
+- name: src/Main$QueueWrapper.class
+  visible: true
+  learner_created: true
+feedback_link: https://hyperskill.org/learn/step/2768#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: Fri, 30 Apr 2021 11:35:53 UTC
+record: -1
