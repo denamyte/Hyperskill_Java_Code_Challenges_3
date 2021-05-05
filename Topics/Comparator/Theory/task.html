@@ -32,7 +32,7 @@ messages.add(new Message("with"));
 messages.add(new Message("peace!"));</code></pre> 
   <p style="font-variant: normal;"><span style="color: #000000;">If we try to sort the list of these <code class="language-java">Message</code> objects, we will get a compilation error, because our <code class="language-java">Message</code> class does not support any methods that allow for comparing its instances. To solve this issue, let's create a <code class="language-java">Comparator</code> that will define a sorting ordering for objects of the <code class="language-java">Message</code> class.</span></p> 
   <h2 style="font-variant: normal;"><span style="color: #000000;">Comparator</span></h2> 
-  <p style="font-variant: normal;"><span style="color: #000000;"><code class="language-java">Comparator&lt;T&gt;</code> is a generic interface that has a single abstract method <code class="language-java">compare</code> and quite a few non-abstract methods that we will take a look at later. To create a <code class="language-java">Comparator</code>, we need to define a class that implements the <code class="language-java">Comparator</code> interface and overloads its single abstract method:</span></p> 
+  <p style="font-variant: normal;"><span style="color: #000000;"><code class="language-java">Comparator&lt;T&gt;</code> is a generic interface that has a single abstract method <code class="language-java">compare</code> and quite a few non-abstract methods that we will take a look at later. To create a <code class="language-java">Comparator</code>, we need to define a class that implements the <code class="language-java">Comparator</code> interface and overrides its single abstract method:</span></p> 
   <pre><code class="language-java">class MessageContentComparator implements Comparator&lt;Message&gt; {
 
     @Override
@@ -77,7 +77,7 @@ peace!
 humans!</code></pre> 
   <p style="font-variant: normal;"><span style="color: #000000;">The messages have been printed in the order of the length of their content rather than in the order they were added to the list. Moreover, we can have multiple <code class="language-java">Comparator</code> classes for our class and sort its instances using different orderings depending on our needs. </span></p> 
   <h2 style="font-variant: normal;">Multiple fields</h2> 
-  <p style="font-variant: normal;"><span style="color: #000000;">First, let's extend the <code class="language-java">Message</code> class and then see how we can do it:</span></p> 
+  <p style="font-variant: normal;"><span style="color: #000000;">First, let's extend the <code class="language-java">Message</code> class and then see how we can implement sorting:</span></p> 
   <pre><code class="language-java">class Message {
 
     private final String from;

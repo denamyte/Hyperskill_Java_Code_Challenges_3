@@ -19,12 +19,12 @@
   <h2>Non-reifiable limitations</h2> 
   <p>The fact that non-reifiable types are not present at runtime leads to some limitations: </p> 
   <p>1) It is prohibited to create a non-reifiable typed instance.</p> 
-  <p>It is extremely simple to create the instance of <code class="language-java">Box&lt;T&gt;</code> with a specific type <code class="language-java">Box&lt;String&gt; box = new Box&lt;&gt;()</code>. However generic constructor call causes a compilation error:</p> 
+  <p>Suppose you need to create an instance of a class of <code class="language-java">T</code> type inside a parameterized class. It looks fine to call a generic constructor, however, it leads to a compilation error</p> 
   <pre><code class="language-java">class Box&lt;T&gt; {
     private T instance;
 
     public void init() {
-        this.instance = new T(); // compile-time error: Type parameter T cannot be instantiated directly
+        instance = new T(); // compile-time error: Type parameter T cannot be instantiated directly
     }
 }</code></pre> 
   <p>This limitation is reasonable since we have no way to guarantee that <code class="language-java">T</code> will implement any particular constructor.</p> 
