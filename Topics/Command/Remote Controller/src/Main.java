@@ -90,7 +90,7 @@ class TurnOffCommand implements Command {
 
     @Override
     public void execute() {
-        tv.turnOff();
+       tv.turnOff();
     }
 }
 
