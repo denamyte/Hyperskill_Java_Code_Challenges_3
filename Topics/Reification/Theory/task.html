@@ -1,7 +1,7 @@
 <html>
  <head></head>
  <body>
-  <p>Generics are known for their type safety, which is obviously a good thing. However, it has a flip side. As we've already discussed, type erasure — the compiler process that preserves type safety — can complicate program logic. Now it's time to discuss another generics-related notion: reficiation.</p> 
+  <p>Generics are known for their type safety, which is obviously a good thing. However, it has a flip side. As we've already discussed, type erasure — the compiler process that preserves type safety — can complicate program logic. Now it's time to discuss another generics-related notion: reification.</p> 
   <h2>What is reification</h2> 
   <p>Type erasure only affects certain data types — other types are not affected and preserve their type data in byte code. Types that save information about themselves during type erasure are called <em>reifiable</em>, while types whose information is erased are called <em>non-reifiable</em>. The term reification refers to the process of making certain type parameters available at runtime as well as at compile-time.</p> 
   <h2>The two groups</h2> 

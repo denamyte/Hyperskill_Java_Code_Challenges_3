@@ -8,7 +8,7 @@
   <p>The classic version of the <strong>Command</strong> pattern has the following elements:</p> 
   <ul> 
    <li>The<strong> Command</strong> interface usually declares just a single method for executing the command.</li> 
-   <li>The<strong> ConcreteCommand</strong> is an operation with parameters that pass the call to the receiver; In the classic approach, a command only invokes one or more methods of a <em>Receiver</em> rather than perform business logic.</li> 
+   <li>The<strong> ConcreteCommand</strong> is an operation with parameters that pass the call to the receiver; in the classic approach, a command only invokes one or more methods of a <em>Receiver</em> rather than performs business logic.</li> 
    <li>The<strong> Receiver</strong> knows how to perform the action.</li> 
    <li>The<strong> Invoker</strong> asks the command to carry out the request.</li> 
    <li>The<strong> </strong><strong>Client</strong> creates a <strong>ConcreteCommand</strong> object and sets the <em>Receiver</em>.</li> 
@@ -24,7 +24,7 @@
   <p>The <em>Client</em> creates an object of <em>Receiver</em> and a <em>ConcreteCommand</em> and sets up the Invoker to execute the command. Each type of <em>ConcreteCommand</em> (e.g. <em>CreateFileCommand</em>, <em>RemoveFileCommand</em>) has a set of fields which represent the params. A command calls one or more methods of the <em>Receiver</em> to execute concrete actions to change the state of the application.</p> 
   <p>You will be able to understand these concepts better with a real-world example. </p> 
   <h2 style="text-align: center;">Example of the command pattern</h2> 
-  <p>Suppose you are going to build a home automation system where you need to turn on and off a light. Here we have two commands which are quite similar. So we will create one interface as <code class="language-java">Command</code> first. It will have only one method which is <code class="language-java">execute()</code>. </p> 
+  <p>Suppose you are going to build a home automation system where you need to turn the light on and off. Here we have two commands which are quite similar. So first, we will create the <code class="language-java">Command</code> interface. It will have only one method – <code class="language-java">execute()</code>. </p> 
   <pre><code class="language-java">public interface Command {
     void execute();
 }</code></pre> 
@@ -68,7 +68,7 @@
         System.out.println("Turn off Light");
     }
 }</code></pre> 
-  <p>Sometimes learning design patterns with simple examples is difficult because these examples don't represent the complexity of real-world applications. For example, someone may think why do we create a separate <code class="language-java">Light</code> class when only we need two methods and both of them can be implemented on the command classes itself. Well, in a real-world application, the <code class="language-java">Light</code> class can be more complicated with more fields and methods in which command classes have nothing to do.</p> 
+  <p>Sometimes learning design patterns with simple examples is difficult because these examples don't represent the complexity of real-world applications. For example, someone may think why do we create a separate <code class="language-java">Light</code> class when only we need two methods and both of them can be implemented on the command classes itself. Well, in a real-world application, the <code class="language-java">Light</code> class can be more complex with more fields and methods, in which command classes have nothing to do.</p> 
   <p>Next, we need to create the <strong>Invoker class</strong>. The invoker class decides how the commands are executed. For example, the invoker can keep a list of commands that need to be executed in a specific order. Please note that Invoker is just a general term we use to call this class which decides how commands are executed. You can name it as you want depending on the application you develop.</p> 
   <p>We will name the invoker class as <code class="language-java">Controller</code> here. </p> 
   <pre><code class="language-java">public class Controller {
@@ -136,6 +136,6 @@ Turn off Light</code></pre>
    <li><strong>Asynchronous method invocation. </strong>In multithreading programming, this pattern makes it possible to run commands asynchronously in the background of an application. In this case, the Invoker is running in the main thread and sends the requests to the Receiver which is running in a separate thread. The invoker will keep a queue of commands and send them to the receiver while it finishes running them.</li> 
   </ul> 
   <h2 style="text-align: center;">Conclusion</h2> 
-  <p>The main advantage of the command pattern is that it decouples the object that invokes the operation from the one that knows how to perform it. Various modifications of this pattern can be used to keep a history of requests, implement the undo functionality and create macro commands. However, keep it in mind that your application can become more complicated because this pattern adds another layer of abstraction instead of simply invoking methods.</p>
+  <p>The main advantage of the command pattern is that it decouples the object that invokes the operation from the one that knows how to perform it. Various modifications of this pattern can be used to keep a history of requests, implement the undo functionality and create macro commands. However, keep in mind that your application can become more complex because this pattern adds another layer of abstraction instead of simply invoking methods.</p>
  </body>
 </html>

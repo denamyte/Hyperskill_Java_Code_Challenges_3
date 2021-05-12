@@ -6,5 +6,8 @@ files:
     \    // put your code here       \n    }\n}"
   learner_created: false
 feedback_link: https://hyperskill.org/learn/step/9636#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: Wed, 12 May 2021 00:14:58 UTC
 record: -1
