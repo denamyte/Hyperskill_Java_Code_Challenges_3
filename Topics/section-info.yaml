@@ -24,3 +24,4 @@ content:
 - Rabin-Karp algorithm in Java
 - Decorator
 - Observer
+- Custom serialization
