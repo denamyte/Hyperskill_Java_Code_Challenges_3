@@ -25,3 +25,4 @@ content:
 - Decorator
 - Observer
 - Custom serialization
+- Facade
