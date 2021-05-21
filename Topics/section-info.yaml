@@ -26,3 +26,4 @@ content:
 - Observer
 - Custom serialization
 - Facade
+- Abstract factory
