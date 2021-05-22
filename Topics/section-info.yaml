@@ -27,3 +27,4 @@ content:
 - Custom serialization
 - Facade
 - Abstract factory
+- Iterator and Iterable
