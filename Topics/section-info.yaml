@@ -28,3 +28,4 @@ content:
 - Facade
 - Abstract factory
 - Iterator and Iterable
+- Custom annotations and types of annotations
