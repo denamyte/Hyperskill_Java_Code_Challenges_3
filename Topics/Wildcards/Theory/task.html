@@ -1,8 +1,9 @@
+<h2>Wildcards</h2>
 <html>
  <head></head>
  <body>
   <p>Earlier, when we were discussing type bounds, we mentioned <em>Wildcards</em> as a feature that serves a similar purpose and has wide application.</p> 
-  <p>Wildcards are a specific Java tool that allows the implementation of some compatibility between different generic objects. In essence, the wildcard is the “<strong>?</strong>” sign, used to indicate that a class, method, or field is compatible with different type parameters.</p> 
+  <p>Wildcards are a specific Java tool that allows the implementation of some compatibility between different generic objects. In essence, the wildcard is the "<strong>?"</strong> sign, used to indicate that a class, method, or field is compatible with different type parameters.</p> 
   <h2>Why Wildcards?</h2> 
   <p>As an object-oriented language, Java relies on the concept of inheritance. But since generics are type-safe structures, it is impossible to introduce inheritance for generic objects.</p> 
   <p>To illustrate this problem, let's consider two classes:</p> 
@@ -12,7 +13,7 @@ class Album extends Book {}</code></pre>
   <pre><code class="language-java">List&lt;Album&gt; albums = new ArrayList&lt;&gt;();
 List&lt;Book&gt; books = albums; // compile-time error</code></pre> 
   <p>The root of the problem lies in the fact that <code class="language-java">List&lt;Album&gt;</code> is not a subclass of <code class="language-java">List&lt;Book&gt;</code>: inheritance does not apply to generic classes. Such behavior is known as invariance. It doesn't matter that <code class="language-java">Album</code> extends <code class="language-java">Book</code>, because containers like <code class="language-java">List&lt;T&gt;</code>, <code class="language-java">Set&lt;T&gt;</code> and others are treated like independent classes. </p> 
-  <p>The example above is exactly where wildcards could help. A generic class or a method declared with wildcards can avoid inheritance issues. To implement wildcards, use “?” inside angle brackets (<code class="language-java">&lt;?&gt;</code>). Let's use it to address the compiler error: </p> 
+  <p>The example above is exactly where wildcards could help. A generic class or a method declared with wildcards can avoid inheritance issues. To implement wildcards, use "?" inside angle brackets (<code class="language-java">&lt;?&gt;</code>). Let's use it to address the compiler error: </p> 
   <pre><code class="language-java">List&lt;Album&gt; albums = new ArrayList&lt;&gt;();
 List&lt;? extends Book&gt; albumsAndBooks = albums; // it is ok</code></pre> 
   <p>or</p> 
@@ -22,7 +23,7 @@ List&lt;? super Album&gt; albumsAndBooks = albums; // it is ok as well</code></p
   <h2>Upper Bounded Wildcards</h2> 
   <p>Upper Bounded Wildcards are used when we want to set an upper bound. It is set with the <code class="language-java">extends</code> keyword:</p> 
   <pre><code class="language-java">? extends ReferenceType</code></pre> 
-  <p>This code can be read as “any type that is a subtype of <code class="language-java">ReferenceType</code>”. In other words, if <code class="language-java">S</code> is a subtype of <code class="language-java">T</code>, then type <code class="language-java">List&lt;S&gt;</code> is considered to be a subtype of <code class="language-java">List&lt;? extends T&gt;</code>. This feature is known as covariance.</p> 
+  <p>This code can be read as "any type that is a subtype of <code class="language-java">ReferenceType</code>". In other words, if <code class="language-java">S</code> is a subtype of <code class="language-java">T</code>, then type <code class="language-java">List&lt;S&gt;</code> is considered to be a subtype of <code class="language-java">List&lt;? extends T&gt;</code>. This feature is known as covariance.</p> 
   <p>Suppose that our program represents a library where we want to store only different types of books: normal books, booklets, photo albums, and so on. How would we avoid storing other media types such as audio recordings? Let's say that we have two more classes: </p> 
   <pre><code class="language-java">public class Booklet extends Book {}
 public class AudioFile {}</code></pre> 
@@ -70,7 +71,7 @@ storage = books; // it works, Book is a supertype for Album
 List&lt;Booklet&gt; booklets = new ArrayList&lt;&gt;();
 storage = booklets; // compile-time error, Booklet is not a supertype for Album</code></pre> 
   <p>Here we made sure that only supertypes of the <code class="language-java">Album</code> class can be added to the storage.</p> 
-  <p>Now let’s consider some limitations of lower bounding.</p> 
+  <p>Now let's consider some limitations of lower bounding.</p> 
   <pre><code class="language-java">/**
 * Hierarchy: Album &lt;- Book &lt;- Object  
 * Allowed types: List&lt;Album&gt;, List&lt;Book&gt;, List&lt;Object&gt;
@@ -137,3 +138,4 @@ private static &lt;T&gt; void reverseCaptured(List&lt;T&gt; list) {
   <p>Wildcards are a convenient and safe way of implementing an equivalent of inheritance in Generics. They are declared with the <code class="language-java">&lt;?&gt;</code> symbol and are widely used with upper or lower bounds to restrict type parameters.</p>
  </body>
 </html>
+<a href="https://hyperskill.org/learn/step/9455">Show topic summary</a>
