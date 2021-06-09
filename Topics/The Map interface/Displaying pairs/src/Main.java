@@ -7,6 +7,6 @@ public class Main {
         map.put("Omega", 24);
         map.put("Alpha",  1);
 
-        // write your code here    
+        map.forEach((k, v) -> System.out.printf("%s=%d%n", k, v));
     }
 }
