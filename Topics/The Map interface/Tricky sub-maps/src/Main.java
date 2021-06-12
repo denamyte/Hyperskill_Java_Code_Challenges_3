@@ -2,7 +2,12 @@ import java.util.*;
 
 class MapUtils {
     public static Map<Integer, String> getSubMap(TreeMap<Integer, String> map) {
-        // Write your code here
+
+        Map<Integer, String> subMap = new TreeMap<>((i, j) -> j - i);
+        subMap.putAll(map.firstKey() % 2 > 0
+                              ? map.subMap(map.firstKey(), map.firstKey() + 5)
+                              : map.subMap(map.lastKey() - 4, map.lastKey() + 1));
+        return subMap;
     }
 }
 
