@@ -1,75 +1,67 @@
 import java.util.Scanner;
+import java.util.stream.IntStream;
 
 public class Main {
     public static void main(String[] args) {
-        int[] amountList = new int[3];
+        try (Scanner scanner = new Scanner(System.in)) {
 
-        Scanner scanner = new Scanner(System.in);
-        for (int i = 0; i < 3; i++) {
-            amountList[i] = scanner.nextInt();
-        }
-
-        Broker broker = new Broker();
-        for (int i = 0; i < 3; i++) {
-            Option option = new Option(amountList[i]);
-            Command command;
-            if (amountList[i] > 0) {
-                /* write your code here */
-            } else {
-                /* write your code here */
-            }
-            broker.setCommand(command);
-            broker.executeCommand();
+            Broker broker = new Broker();
+            IntStream.generate(scanner::nextInt).limit(3)
+                    .mapToObj(Main::toCommand)
+                    .forEach(command -> {
+                        broker.setCommand(command);
+                        broker.executeCommand();
+                    });
         }
     }
-}
 
-class Option {
-    private int amount;
-
-    Option(int amount) {
-        this.amount = amount;
-    }
-
-    void buy() {
-        System.out.println(amount + " was bought");
-    }
-
-    void sell() {
-        /* write your code here */
+    private static Command toCommand(int amount) {
+        return amount > 0 ? new BuyCommand(amount) : new SellCommand(amount);
     }
 }
 
 interface Command {
-    /* write your code here */
+    void execute();
 }
 
-class BuyCommand implements Command {
-    private Option option;
+abstract class BaseCommand implements Command {
+    protected int amount;
 
-    BuyCommand(Option option) {
-        this.option = option;
+    public BaseCommand(int amount) {
+        this.amount = amount;
     }
-
-    /* write your code here */
 }
 
-class SellCommand implements Command {
-    private Option option;
+class BuyCommand extends BaseCommand {
 
-    SellCommand(Option option) {
-        this.option = option;
+    BuyCommand(int amount) {
+        super(amount);
     }
 
-    /* write your code here */
+    @Override
+    public void execute() {
+        System.out.println(amount + " was bought");
+    }
+}
+
+class SellCommand extends BaseCommand {
+
+    SellCommand(int amount) {
+        super(amount);
+    }
+
+    @Override
+    public void execute() {
+        System.out.println(amount + " was sold");
+    }
 }
 
 class Broker {
     private Command command;
     void setCommand(Command command) {
-        /* write your code here */
+        this.command = command;
     }
     void executeCommand() {
-        /* write your code here */
+        command.execute();
     }
 }
