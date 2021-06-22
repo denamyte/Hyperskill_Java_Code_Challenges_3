@@ -1,0 +1,11 @@
+import java.time.LocalDate;
+import java.util.Scanner;
+
+class Main {
+    public static void main(String[] args) {
+        try (Scanner scanner = new Scanner(System.in)) {
+            LocalDate date = LocalDate.ofYearDay(scanner.nextInt(), scanner.nextInt());
+            System.out.println(date.plusDays(1).getMonthValue() != date.getMonthValue());
+        }
+    }
+}
