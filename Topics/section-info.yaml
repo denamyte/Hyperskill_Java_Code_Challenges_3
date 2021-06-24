@@ -39,3 +39,6 @@ content:
 - Match results
 - HashMap
 - LocalDate
+- Reduction methods
+- LocalTime
+- LocalDateTime
