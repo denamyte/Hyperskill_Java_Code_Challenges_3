@@ -1,6 +1,7 @@
 // Do not remove imports
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Scanner;
 
@@ -15,6 +16,9 @@ class ListParameterInspector {
     }
 
     public void printParameterType(TestClass obj, String fieldName) throws Exception {
-        // Add implementation here 
+        Field field = TestClass.class.getDeclaredField(fieldName);
+        ParameterizedType parameterizedType = (ParameterizedType) field.getGenericType();
+        Type[] typeArguments = parameterizedType.getActualTypeArguments();
+        System.out.println(typeArguments[0].getTypeName());
     }
 }

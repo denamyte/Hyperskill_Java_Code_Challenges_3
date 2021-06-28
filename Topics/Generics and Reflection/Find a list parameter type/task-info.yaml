@@ -12,5 +12,8 @@ files:
     \ fieldName) throws Exception {\n        // Add implementation here \n    }\n}"
   learner_created: false
 feedback_link: https://hyperskill.org/learn/step/11182#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: Mon, 28 Jun 2021 11:31:37 UTC
 record: -1

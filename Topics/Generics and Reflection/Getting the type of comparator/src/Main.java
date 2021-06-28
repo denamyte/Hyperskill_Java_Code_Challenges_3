@@ -1,5 +1,6 @@
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.Comparator;
 
 /**
  * Class to work with
@@ -21,5 +22,21 @@ class ComparatorInspector {
             }
         }
         return null;
+//
+//        final Type comparable = Arrays.stream(clazz.getGenericInterfaces())
+//                .filter(type -> type instanceof Comparable)
+//                .findFirst().orElse(null);
+//        if (comparable instanceof ParameterizedType) {
+//            ParameterizedType type = (ParameterizedType) comparable;
+//            type.getRawType()
+//            final Type[] typeArguments = type.getActualTypeArguments();
+//            return typeArguments.length == 0 ? null : typeArguments[0];
+//        }
+//        if (comparable instanceof WildcardType) {
+//            WildcardType type = (WildcardType) comparable;
+//            final Type[] upperBounds = type.getUpperBounds();
+//            return upperBounds.length == 0 ? null : upperBounds[0];
+//        }
+//        return null;
     }
 }
