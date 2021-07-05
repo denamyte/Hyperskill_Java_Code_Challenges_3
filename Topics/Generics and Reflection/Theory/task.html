@@ -1,3 +1,4 @@
+<h2>Generics and Reflection</h2>
 <html>
  <head></head>
  <body>
@@ -76,7 +77,7 @@ System.out.println(wildcardType.getUpperBounds()); // Number</code></pre>
         return data;
     }
 }</code></pre> 
-  <p>For classes that contain type variables (e.g. <code class="language-java">&lt;K extends String, V extends Number&gt;</code>), the <code class="language-java">TypeVariable</code> class allows us to retrieve detailed information about types. Similarly to the <code class="language-java">WildcardType</code> interface, this class provides a method for retrieving information on type bounds. We can initialize a list of <code class="language-java">TypeVariable</code> objects by calling the g<code class="language-java">etTypeParameters</code> method from a <code class="language-java">Class</code> or <code class="language-java">Method</code> object. </p> 
+  <p>For classes that contain type variables (e.g. <code class="language-java">&lt;K extends String, V extends Number&gt;</code>), the <code class="language-java">TypeVariable</code> class allows us to retrieve detailed information about types. Similarly to the <code class="language-java">WildcardType</code> interface, this class provides a method for retrieving information on type bounds. We can initialize a list of <code class="language-java">TypeVariable</code> objects by calling the <code class="language-java">getTypeParameters</code> method from a <code class="language-java">Class</code> or <code class="language-java">Method</code> object. </p> 
   <pre><code class="language-java">TypeVariable&lt;Class&lt;GenericDataHolder&gt;&gt;[] typeVariables = GenericDataHolder.class.getTypeParameters();
 System.out.println("Type variables count " + typeVariables.length);
 

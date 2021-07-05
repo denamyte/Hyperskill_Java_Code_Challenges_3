@@ -1,13 +1,16 @@
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 class MapUtils {
 
-    public static SortedMap<String, Integer> wordCount(String[] strings) {
-        // write your code here
+    public static SortedMap<String, Long> wordCount(String[] strings) {
+        return Arrays.stream(strings)
+                .collect(Collectors.groupingBy(Function.identity(), TreeMap::new, Collectors.counting()));
     }
 
-    public static void printMap(Map<String, Integer> map) {
-        // write your code here
+    public static void printMap(Map<String, Long> map) {
+        map.forEach((k, v) -> System.out.printf("%s : %d%n", k, v));
     }
 
 }
