@@ -1,13 +1,10 @@
-import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class Main {
 
-    private static <T> boolean isStrictSuperset(Set<T> set1, Set<T> set2) {
-        // write your code here
-        return false;
+    private static <T> boolean isStrictSuperset(final Set<T> set1, final Set<T> set2) {
+        return !set1.equals(set2) && set2.containsAll(set1);
     }
 
     /* Please do not change the code below */
@@ -21,8 +18,6 @@ public class Main {
     }
 
     private static Set<String> readStringSet(Scanner scanner) {
-        return Arrays
-                .stream(scanner.nextLine().split("\\s+"))
-                .collect(Collectors.toSet());
+        return Set.of(scanner.nextLine().split("\\s+"));
     }
 }
