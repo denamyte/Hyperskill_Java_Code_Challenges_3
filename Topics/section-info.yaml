@@ -42,3 +42,4 @@ content:
 - Reduction methods
 - LocalTime
 - LocalDateTime
+- NPE
