@@ -1,3 +1,4 @@
+<h2>Builder</h2>
 <html>
  <head></head>
  <body>
@@ -23,7 +24,7 @@
 }</code></pre> 
   <p>To create an instance, just call the constructor:</p> 
   <pre><code class="language-java">AlertDialog alertDialog = new AlertDialog("title", "text", "applyButton", "cancelButton", "footer", "pathToPicture");</code></pre> 
-  <p>Suppose an application developer needs an element with the title and cancel button only. In such a case, your constructor doesn't look friendly and affect the code readability:</p> 
+  <p>Suppose an application developer needs an element with the title and cancel button only. In such a case, your constructor doesn't look friendly and affects the code readability:</p> 
   <pre><code class="language-java">AlertDialog alertNotification = new AlertDialog("Completed successfully", null, "Ok", null, null, null);</code></pre> 
   <p>To avoid such constructor calls in application code, you create the corresponding constructor:</p> 
   <pre><code class="language-java">class AlertDialog {
@@ -147,7 +148,7 @@ alertDialog.setApplyButton("Ok");</code></pre>
         System.out.println(oneButtonsDialog);
     }
 }</code></pre> 
-  <p>And that's it. Although the example pattern code structure differs from a pattern structure described in UML, this is a common builder implementation. The pattern looks small and easy to implement, but it is extremely helpful in combination with other patterns, such as <em>Composite</em> <em>pattern, </em>any<em> Fabric pattern </em>and others<em>. </em>Finally, the output is: </p> 
+  <p>And that's it. Although the example pattern code structure differs from a pattern structure described in UML, this is a common builder implementation. The pattern looks small and easy to implement, but it is extremely helpful in combination with other patterns, such as <em>Composite</em> <em>pattern, </em>any<em> Factory pattern, </em>and others<em>. </em>Finally, the output is: </p> 
   <pre><code class="language-java">The title is: "Two buttons dialog"
 The text is: "You can use either `Okay` or `Cancel`"
 The applyButton is: "Okay"
@@ -157,6 +158,6 @@ The title is: "One button dialog"
 The text is: "You can use `Close` only"
 The cancelButton is: "Close"</code></pre> 
   <h2 style="text-align: center;">Conclusion</h2> 
-  <p>We have created an encapsulated step-by-step creational process. Also, the builder provides an opportunity to create an object with a variable set of steps and consequently instantiated properties (unlike "one-step" Fabric Patterns).</p>
+  <p>We have created an encapsulated step-by-step creational process. Also, the builder provides an opportunity to create an object with a variable set of steps and consequently instantiated properties (unlike "one-step" Factory Patterns).</p>
  </body>
 </html>

@@ -8,7 +8,7 @@
    <li>for any node, the values of the nodes in its right subtree are greater than or equal to this node;</li> 
    <li>any subtree of the binary search tree is also a binary search tree.</li> 
   </ul> 
-  <p>As simple as that: we have a treelike data structure, where smaller children go to the left and bigger go the the right, and the process continues from the root of the tree down to the leaves. On average, every basic operation on a binary search tree takes O(log n) time to complete, so this data structure allows us to find solutions rather quickly, which is surely a big advantage.</p> 
+  <p>As simple as that: we have a treelike data structure, where smaller children go to the left and bigger ones go to the right, and the process continues from the root of the tree down to the leaves. On average, every basic operation on a binary search tree takes O(log n) time to complete, so this data structure allows us to find solutions rather quickly, which is surely a big advantage.</p> 
   <h2 style="text-align: center;">The implementation in Java</h2> 
   <p>Let’s take a look at the data structure.</p> 
   <pre><code class="language-language-java">static class Node {
@@ -62,7 +62,7 @@ public void insert(int key, int value) {
   <p>Quite logically, the key of the node we’re inserting is not contained within the tree. This means that during the recursive traversal by that key, we eventually get down to a node that should become a parent of the new one. All the while we keep a pointer to the parent (at the start it’s null). This way, we always know the parent of our node. Same as with the previous algorithm, the complexity is O(log n) on average and O(n) in the worst case.</p> 
   <h2 style="text-align: center;">Node removal</h2> 
   <p>This algorithm may seem a bit more difficult compared to the previous two: depending on the position of the node we need to remove, there are a few different options. If you don’t feel confident enough, review the previous topic about binary search trees.</p> 
-  <p>Let’s first examine a supporting method that we will need for the removal operation. While removing the node, we don’t want any data lost, so we employ this method. Its purpose is to put a child into its parent node, hence it can only be used when the given node has only one child.</p> 
+  <p>Let’s first examine a supporting method that we will need for the removal operation. While removing the node, we don’t want to lose any data, so we employ this method. Its purpose is to put a child into its parent node, hence it can only be used when the given node has only one child.</p> 
   <pre><code class="language-language-java">void replace(Node a, Node b) {
     if (a.parent == null)
         root = b;
@@ -110,4 +110,3 @@ public void remove(int key) {
   <p>The complexity of the algorithm is also O(log n) on average and O(n) in the worst case.</p>
  </body>
 </html>
-<a href="https://hyperskill.org/learn/step/5677">Show topic summary</a>

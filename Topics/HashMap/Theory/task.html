@@ -2,10 +2,10 @@
 <html>
  <head></head>
  <body>
-  <p>As you already know, there are different ways to create a map filled with key-values pairs. Today it's time to take a good look at the <code class="language-java">HashMap</code>: an effective instrument that is probably the most popular implementation of <code class="language-java">Map</code> interface. It provides very fast access to its elements and falls within the top ten questions at Java job interviews.</p> 
+  <p>As you already know, there are different ways to create a map filled with key-values pairs. Today it's time to take a good look at the <code class="language-java">HashMap</code>: an effective instrument that is probably the most popular implementation of the <code class="language-java">Map</code> interface. It provides very fast access to its elements and falls within the top ten questions at Java job interviews.</p> 
   <h2 style="text-align: center;">How does it work?</h2> 
   <p>The <code class="language-java">HashMap</code> class represents a map backed by a <strong>hash table</strong>. To understand what it is let's start with the internal organization of <code class="language-java">HashMap</code>. </p> 
-  <p>If you look inside a <code class="language-java">HashMap</code> you will see that it's an array with <strong>buckets </strong>as its elements. The default size of such an array is 16.</p> 
+  <p>If you look inside <code class="language-java">HashMap</code> you will see that it's an array with <strong>buckets </strong>as its elements. The default size of such an array is 16.</p> 
   <p style="text-align: center;"><img alt="" height="120" src="https://ucarecdn.com/ca6461ac-bdb2-4186-9e4c-5ec70d0044c9/" width="734"></p> 
   <p>What could be a "bucket" in a programming language? Actually, each bucket is a linked list, meaning there are 16 linked lists for storing key-value pairs. And each key-value pair is an element of a linked list. </p> 
   <p style="text-align: center;"><img alt="" height="502" src="https://ucarecdn.com/e0fc467a-e448-4639-acd4-14b1ce5be66e/" width="878"></p> 
@@ -18,7 +18,7 @@
   <p>Thanks to the hash function, this implementation provides <strong>constant-time</strong> performance for <code class="language-java">get</code> and <code class="language-java">put</code> methods! Constant-time means O(1) complexity. </p> 
   <p>Now that you've mastered the theory of the <code class="language-java">HashMap</code> organization, it's time to consider some examples.</p> 
   <h2 style="text-align: center;">Let's play!</h2> 
-  <p><img alt="" src="https://ucarecdn.com/fc1fee49-8c72-42c5-ba78-00f833688ad0/" style="float: left;"></p> 
+  <p><img alt="" src="https://ucarecdn.com/b4a25cb4-b927-433a-acd4-0e21f5e22115/"></p> 
   <pre><code class="language-java">Map&lt;Integer, String&gt; characters = new HashMap&lt;&gt;();
 
 characters.put(1000, "Cinderella");</code></pre> 
@@ -32,10 +32,9 @@ characters.put(1000, "Cinderella");</code></pre>
   </div>
   <p></p> 
   <p>Also, it's good to know that it is possible to create a pair in which the key would be <code class="language-java">null</code>. The hash code of the null-key is always zero.</p> 
-  <p> </p> 
-  <p> </p> 
   <p>Now let's add more characters and see what will happen:</p> 
-  <p><img alt="" src="https://ucarecdn.com/b7cd62c2-f83a-44e7-a817-328d01943701/" style="float: right;"></p> 
+  <p><img alt="" src="https://ucarecdn.com/9326c834-859a-4f32-b579-3db8e1ad36fa/"></p> 
+  <p> </p> 
   <pre><code class="language-java">characters.put(2000, "Prince");
 characters.put(3000, "Evil stepmother");
 
@@ -45,10 +44,9 @@ System.out.println(characters);</code></pre>
   <p>But a stepmother can't be far away from poor Cinderella! <code class="language-java">"Evil stepmother"</code>is also staying in the bucket with the number 8.</p> 
   <p>As you can see, the field <code class="language-java">next</code> in Cinderella's <code class="language-java">Node</code> has changed. Now the field has a link to the next character, <code class="language-java">"Evil stepmother"</code>.</p> 
   <p>Because the <code class="language-java">"Evil stepmother"</code> became the last one in this linked list, her field <code class="language-java">next</code> has value <code class="language-java">null</code>.</p> 
-  <p> </p> 
-  <p> </p> 
   <p>Let's try to remove an element from <code class="language-java">HashMap</code> <code class="language-java">characters</code>:</p> 
-  <p><img alt="" src="https://ucarecdn.com/3c928b9f-78ce-4fc7-895e-e16fcc9e30aa/" style="float: left;"></p> 
+  <p><img alt="" src="https://ucarecdn.com/2c5f3f47-419e-415b-9f59-e10599978489/"></p> 
+  <p> </p> 
   <pre><code class="language-java">characters.remove(3000); // get rid of Evil stepmother
 
 System.out.println(characters.get(3000)); // null</code></pre> 
@@ -75,18 +73,16 @@ System.out.println(characters.containsValue("Fairy Godmother")); // false</code>
   <p>Another important point is collisions. There is always a chance of a situation when two distinct keys will generate the same hash code. This situation is called a <strong>collision</strong>.</p> 
   <pre><code class="language-java">map.put("AaAaAa","First");
 map.put("BBBBBB","Second");</code></pre> 
-  <p><img alt="" src="https://ucarecdn.com/2f2ee06b-e8d5-4c5e-8fb7-16a6a6d93883/" style="float: left;">If the two keys have the same hash code but the keys are different, the second element will be put right after the first one.</p> 
+  <p>If the two keys have the same hash code but the keys are different, the second element will be put right after the first one.</p> 
   <p>In this example keys <code class="language-java">"AaAaAa"</code> and <code class="language-java">"BBBBBB"</code> have the same hash code, and <code class="language-java">Node</code> with the value <code class="language-java">"First"</code> will have a link to the <code class="language-java">Node</code> with the value <code class="language-java">"Second"</code>.</p> 
-  <p> </p> 
+  <p><img alt="" src="https://ucarecdn.com/480c76ba-ce82-4934-b840-a6bb75a6e02d/"></p> 
   <p>Method <code class="language-java">equals</code> is used for checking if the two keys are different. If they are the same the second pair will replace the first one.</p> 
-  <p> </p> 
   <p>If there are a lot of collisions in a <code class="language-java">HashMap</code> the complexity for <code class="language-java">get</code> and <code class="language-java">put</code> methods becomes <strong>O(n)</strong>.</p> 
   <p>Because of that, class <code class="language-java">HashMap</code> was upgraded. Since Java 8, it provides the <em>collision resolution mechanism</em>. If linked lists are too long then <code class="language-java">HashMap</code> changes their structure: all linked lists become balanced trees. The new complexity is <strong>O(log(n))</strong>.</p> 
   <p>Finally, it's important to note that <code class="language-java">HashMap</code> can change the number of buckets. If there are too many pairs in your buckets <code class="language-java">HashMap</code> will change its size to a bigger one. It will transfer all your previous elements to the new version of itself. That, unfortunately, will take some time. And the more elements there are the longer transferring will take.</p> 
-  <h2 style="text-align: center;">When to use?</h2> 
-  <p>The short answer to the question in the title is if you need to store key-value pairs and want the mutable implementation of the <code class="language-java">Map</code> interface. <code class="language-java">HashMap</code> class is often used in practice since it is highly-optimized for accessing elements. Also, iteration over <code class="language-java">HashMap</code> is highly effective.</p> 
+  <h2 style="text-align: center;">When to use it?</h2> 
+  <p>The short answer to the question in the title is if you need to store key-value pairs and want the mutable implementation of the <code class="language-java">Map</code> interface. <code class="language-java">HashMap</code> class is often used in practice since it is highly optimized for accessing elements. Also, iteration over <code class="language-java">HashMap</code> is highly effective.</p> 
   <p>And what about the disadvantages? Well, nobody's perfect. There is no way to avoid collisions. The size of <code class="language-java">HashMap</code> may increase so that it will take some time to transfer all the elements.</p> 
   <p>At last, remember, that <code class="language-java">HashMap</code> class makes no guarantees as to the order of the map. It also does not guarantee that the order will remain constant over time.</p>
  </body>
 </html>
-<a href="https://hyperskill.org/learn/step/12379">Show topic summary</a>

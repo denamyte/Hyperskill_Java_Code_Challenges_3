@@ -1,3 +1,4 @@
+<h2>Custom annotations and types of annotations</h2>
 <html>
  <head></head>
  <body>
@@ -23,7 +24,7 @@ public @interface Description {}</code></pre>
   <pre><code class="language-java">@Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface Description {}</code></pre> 
-  <p>See all available target types in the following table. </p> 
+  <p>The following table shows all target types available for Java 1.8.</p> 
   <table align="center" border="1" cellpadding="1" cellspacing="1" style="width: 500px;"> 
    <caption> 
    </caption> 
@@ -58,7 +59,15 @@ public @interface Description {}</code></pre>
     </tr> 
     <tr> 
      <td><code class="language-java">ElementType.TYPE</code></td> 
-     <td>Any element of the class</td> 
+     <td>Class, interface, enum, or annotation</td> 
+    </tr> 
+    <tr> 
+     <td><code class="language-java">ElementType.TYPE_PARAMETER</code></td> 
+     <td>Type parameter declaration</td> 
+    </tr> 
+    <tr> 
+     <td><code class="language-java">ElementType.TYPE_USE</code></td> 
+     <td>Use of a type</td> 
     </tr> 
    </tbody> 
   </table> 
@@ -68,7 +77,7 @@ public @interface Description {}</code></pre>
    <li>primitives;</li> 
    <li><code class="language-java">String</code>;</li> 
    <li><code class="language-java">Class</code>;</li> 
-   <li><code class="language-java">enum</code>;</li> 
+   <li><code class="language-java">Enum</code>;</li> 
    <li>annotation;</li> 
    <li>an array of these types.</li> 
   </ul> 
@@ -99,8 +108,8 @@ public @interface Descriptions {
 public @interface Description {...}</code></pre> 
   <p>Now the annotation can be applied more than one time: </p> 
   <pre><code class="language-java">@Descriptions(value = {
-        @Description(description = "first description"),
-        @Description(description = "second description"),
+        @Description(author = "John Doe", description = "first description"),
+        @Description(author = "Richard Roe", description = "second description"),
 })
 public void testMethod() {</code></pre> 
   <p><strong><code class="language-java">@Documented</code></strong> takes no parameters and includes an annotation in the Javadoc documentation.</p> 

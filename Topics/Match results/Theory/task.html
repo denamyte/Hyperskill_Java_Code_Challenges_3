@@ -13,7 +13,7 @@ Matcher matcher = javaPattern.matcher(javaText);
 System.out.println(matcher.find()); // prints "true"</code></pre> 
   <p>When <code class="language-java">find()</code> method returns <code class="language-java">true</code> it is possible to get some info about the substring matching the pattern. <code class="language-java">start()</code> and <code class="language-java">end()</code> return the starting and the last indices of the match respectively, while <code class="language-java">group()</code> returns the matching substring itself.</p> 
   <pre><code class="language-java">System.out.println(matcher.start()); // 0, the starting index of match
-System.out.println(matcher.end());   // 4, the index followed the last index of match
+System.out.println(matcher.end());   // 4, the index following the last index of match
 System.out.println(matcher.group()); // "Java", a substring that matches the pattern</code></pre> 
   <p>There is a special class<code class="language-java">MatchResult</code> that comprises all this information about the match:</p> 
   <pre><code class="language-java">MatchResult result = matcher.toMatchResult(); // a special object containing match results
@@ -48,4 +48,3 @@ group: JAVA, start: 45</code></pre>
   <p>As you can see, <code class="language-java">Matcher</code> saves all the necessary info about matches. We can learn where every matching substring starts and where it ends and how it looks like. Later this data can be saved in a <code class="language-java">MatchResult</code> object.</p>
  </body>
 </html>
-<a href="https://hyperskill.org/learn/step/3716">Show topic summary</a>

@@ -1,3 +1,4 @@
+<h2>Singleton</h2>
 <html>
  <head></head>
  <body>
@@ -18,7 +19,7 @@
   <p>The following code implements these concepts:</p> 
   <pre><code class="language-java">class Singleton {
 
-    private static Singleton instance = new Singleton();
+    private static final Singleton instance = new Singleton();
 
     private Singleton() { }
 
@@ -56,7 +57,11 @@ System.out.println(s2 == s3); // true because s2 and s3 refer the same object</c
 }</code></pre> 
   <p> </p> 
   <p>Even though the implementation of a singleton pattern contains few lines of code, it has an important feature: lazy initialization. It means that the singleton instance is not created until the <code class="language-java">getInstance</code> method is called for the first time. This technique ensures that singleton instances are created only when needed.</p> 
-  <p>Note that you should use the provided singleton class only in one-thread environments because it is prone to multithreading issues. In other topics, we will consider techniques to write thread-safe singletons.</p> 
+  <p></p>
+  <div class="alert alert-warning">
+    Note that you should use the provided singleton class only in one-thread environments because it is prone to multithreading issues. In other topics, we will consider techniques to write thread-safe singletons. 
+  </div>
+  <p></p> 
   <h2 style="text-align: center;">Singleton pattern in Java libraries</h2> 
   <p>There are a lot of Singleton examples in the Java Class Library:</p> 
   <ul> 
