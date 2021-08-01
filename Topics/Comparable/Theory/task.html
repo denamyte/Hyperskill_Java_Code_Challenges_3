@@ -3,7 +3,7 @@
  <head></head>
  <body>
   <p>While working with data, you will likely need to order it in a convenient way. For example, you may have to put numbers in ascending order, group lines in alphabetical order, and organize anything you work with by date, by price, or by other custom characteristics. </p> 
-  <p>In Java, it's possible to implement various sorting algorithms for any type of data. What if you have to work with custom types, sort elements of the collection, and try to compare objects that are not directly comparable? That's where the <code class="language-java">Comparable</code> interface comes in handy. In this topic, we will learn all about this interface and its <code class="language-java">compareTo()</code> method.</p> 
+  <p>In Java, it's possible to implement various sorting algorithms for any type of data. What if you have to work with custom types, sort elements of a collection, and try to compare objects that are not directly comparable? That's where the <code class="language-java">Comparable</code> interface comes in handy. In this topic, we will learn all about this interface and its <code class="language-java">compareTo()</code> method.</p> 
   <h2>Preparing to compare</h2> 
   <p>Let's look at an example. We created a list of <code class="language-java">Integer</code>, added some elements and then sorted them.</p> 
   <pre><code class="language-java">public static void main(String[] args) {
@@ -28,7 +28,7 @@
 
     // getters, setters
 }</code></pre> 
-  <p>Now we try to write some code for <code class="language-java">main</code> method, create our collection and sort it by <code class="language-java">Collections.sort()</code>method.</p> 
+  <p>Now we try to write some code for the <code class="language-java">main</code> method, create our collection and sort it using the <code class="language-java">Collections.sort()</code> method.</p> 
   <pre><code class="language-java">public static void main(String[] args) {
     List&lt;Car&gt; cars = new ArrayList&lt;&gt;();
     Car car1 = new Car(876, "BMW", "white", 1400);
@@ -41,7 +41,7 @@
     Collections.sort(cars);
     System.out.println(cars);
 }</code></pre> 
-  <p>As a result, we get a compile error:</p> 
+  <p>As a result, we get a compilation error:</p> 
   <pre><code class="language-no-highlight">The method sort(List&lt;T&gt;) in the type Collections 
   is not applicable for the arguments (ArrayList&lt;Car&gt;)</code></pre> 
   <p>The reason for this is that standard classes like <code class="language-java">Integer</code>, <code class="language-java">String</code> and so on implement a special interface, so we can compare them without any problems. As for our custom class <code class="language-java">Car</code> , it doesn't work like that. Let's see how we can fix this.</p> 
@@ -74,7 +74,7 @@
    <li>A negative integer (for example, -1), if the current object is less;</li> 
    <li>Zero, if they are equal.</li> 
   </ul> 
-  <p>Below you can see an example of how the <code class="language-java">compareTo()</code> method is implemented in <code class="language-java">Integer</code> class.</p> 
+  <p>Below you can see an example of how the <code class="language-java">compareTo()</code> method is implemented in the <code class="language-java">Integer</code> class.</p> 
   <pre><code class="language-java">@Override
 public int compareTo(Integer anotherInteger) {
     return compare(this.value, anotherInteger.value);
@@ -94,7 +94,7 @@ public static int compare (int x, int y) {
 
     // getters and setters
 }</code></pre> 
-  <p>We create some objects of <code class="language-java">Person</code> and add them to <code class="language-java">people</code> list. </p> 
+  <p>We create some objects of <code class="language-java">Person</code> and add them to the list <code class="language-java">people</code>. </p> 
   <pre><code class="language-java">public static void main(String[] args) {
     List&lt;Person&gt; people = new ArrayList&lt;&gt;();
     Person tom = new Person("Tom", 22, 185, 65);
@@ -126,6 +126,6 @@ public static int compare (int x, int y) {
   <p>In these examples, the notation <code class="language-java">sgn(expression)</code> designates the mathematical <code class="language-java">signum</code> function, which is defined to return one of <code class="language-java">-1</code>, <code class="language-java">0</code>, or <code class="language-java">1</code> according to whether the value of expression is negative, zero, or positive, respectively.</p> 
   <p>This will ensure that we can safely use objects in sorted sets and sorted maps.</p> 
   <h2>Conclusion</h2> 
-  <p>In this topic, we explored how to use <code class="language-java">Comparable</code> interface in our custom classes to define natural ordering algorithms. We also learned how to properly implement the <code class="language-java">compareTo</code> method.</p>
+  <p>In this topic, we explored how to use the <code class="language-java">Comparable</code> interface in our custom classes to define natural ordering algorithms. We also learned how to properly implement the <code class="language-java">compareTo</code> method.</p>
  </body>
 </html>
