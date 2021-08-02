@@ -46,3 +46,5 @@ content:
 - Comparable
 - States of a thread
 - Recursion
+- Threads as objects
+- Callable and Future
