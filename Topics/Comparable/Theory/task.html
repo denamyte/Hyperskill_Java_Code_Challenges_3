@@ -107,11 +107,11 @@ public static int compare (int x, int y) {
     Collections.sort(people);
     System.out.println(people);
 }</code></pre> 
-  <p>One of the rules is to keep the implementation consistent with the <code class="language-java">equals()</code> method implementation. From our example, if we want to compare our people by their age, <code class="language-java">tom</code> and <code class="language-java">bob</code> are the same age, so:</p> 
+  <p>One of the rules is to keep the <code class="language-java">compareTo()</code> implementation consistent with the implementation of the <code class="language-java">equals()</code> method. For example, if we compare our people by their age, <code class="language-java">tom</code> and <code class="language-java">bob</code> are the same age, so:</p> 
   <ul> 
    <li><code class="language-java">tom.compareTo(bob) == 0</code> should have the same boolean value as <code class="language-java">tom.equals(bob)</code></li> 
   </ul> 
-  <p>Kris is older than Bob, so our method should return <code class="language-java">1</code>, and Bob is younger than Kris so our method returns <code class="language-java">-1</code>:</p> 
+  <p>Kris is older than Bob, so our method should return <code class="language-java">1</code>, and Bob is younger than Kris, so our method returns <code class="language-java">-1</code>:</p> 
   <ul> 
    <li><code class="language-java">sgn(kris.compareTo(bob)) == -sgn(bob.compareTo(kris))</code></li> 
   </ul> 
@@ -119,11 +119,11 @@ public static int compare (int x, int y) {
   <ul> 
    <li><code class="language-java">(tom.compareTo(kris) &gt; 0 &amp;&amp; kris.compareTo(bob) &gt; 0)</code> implies <code class="language-java">tom.compareTo(bob) &gt; 0</code></li> 
   </ul> 
-  <p>Tom and Bob are the same age so they both should be younger or older than Kris:</p> 
+  <p>Tom and Bob are the same age, so they both should be younger or older than Kris:</p> 
   <ul> 
    <li><code class="language-java">tom.compareTo(bob) == 0</code> implies that <code class="language-java">sgn(tom.compareTo(kris)) == sgn(bob.compareTo(kris))</code></li> 
   </ul> 
-  <p>In these examples, the notation <code class="language-java">sgn(expression)</code> designates the mathematical <code class="language-java">signum</code> function, which is defined to return one of <code class="language-java">-1</code>, <code class="language-java">0</code>, or <code class="language-java">1</code> according to whether the value of expression is negative, zero, or positive, respectively.</p> 
+  <p>In these examples, <code class="language-java">sgn(expression)</code> repesents the mathematical <code class="language-java">signum</code> function, which returns <code class="language-java">-1</code>, <code class="language-java">0</code>, or <code class="language-java">1</code>, according to whether the expression value is negative, zero, or positive, respectively.</p> 
   <p>This will ensure that we can safely use objects in sorted sets and sorted maps.</p> 
   <h2>Conclusion</h2> 
   <p>In this topic, we explored how to use the <code class="language-java">Comparable</code> interface in our custom classes to define natural ordering algorithms. We also learned how to properly implement the <code class="language-java">compareTo</code> method.</p>

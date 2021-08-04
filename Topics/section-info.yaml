@@ -7,7 +7,6 @@ content:
 - Type Erasure
 - Reification
 - Generics and Reflection
-- Manipulating fields and methods
 - Static members
 - Choosing the right collection
 - Queue and Stack
@@ -45,6 +44,3 @@ content:
 - NPE
 - Comparable
 - States of a thread
-- Recursion
-- Threads as objects
-- Callable and Future
