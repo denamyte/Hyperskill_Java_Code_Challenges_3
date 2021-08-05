@@ -45,3 +45,4 @@ content:
 - Comparable
 - States of a thread
 - Map and flatMap
+- BigDecimal
