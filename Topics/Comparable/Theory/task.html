@@ -44,9 +44,9 @@
   <p>As a result, we get a compilation error:</p> 
   <pre><code class="language-no-highlight">The method sort(List&lt;T&gt;) in the type Collections 
   is not applicable for the arguments (ArrayList&lt;Car&gt;)</code></pre> 
-  <p>The reason for this is that standard classes like <code class="language-java">Integer</code>, <code class="language-java">String</code> and so on implement a special interface, so we can compare them without any problems. As for our custom class <code class="language-java">Car</code> , it doesn't work like that. Let's see how we can fix this.</p> 
+  <p>The reason for this is that standard classes like <code class="language-java">Integer</code>, <code class="language-java">String</code> and so on implement a special interface, so we can compare them without any problems. As for our custom class <code class="language-java">Car</code>, it doesn't work like that. Let's see how we can fix this.</p> 
   <h2>Comparable interface</h2> 
-  <p><code class="language-java">Comparable</code> provides the <code class="language-java">compareTo()</code> method which allows comparing an object with other objects of the same type. It's also important to comply with the conditions: all objects can be compared to other objects of the same type in the most widely used way, which means <code class="language-java">compareTo()</code> should be consistent with the <code class="language-java">equals</code> method. This is called the <strong>natural ordering</strong> of the class.</p> 
+  <p><code class="language-java">Comparable</code> provides the <code class="language-java">compareTo()</code> method which allows comparing an object with other objects of the same type. It's also important to comply with the conditions: all objects can be compared to other objects of the same type in the most widely used way, which means <code class="language-java">compareTo()</code> should be consistent with the <code class="language-java">equals</code> method. A sequence of data has the <strong>natural ordering</strong>, if for each 2 elements <code class="language-java">a</code> and <code class="language-java">b</code>, where <code class="language-java">a</code> is located to the left of <code class="language-java">b</code>, the condition is true: <code class="language-java">a.compareTo(b) &lt;= 0</code></p> 
   <p>It's easy to understand how to compare <code class="language-java">Integer</code> or <code class="language-java">String</code> because they already implement the <code class="language-java">Comparable</code> interface, but how do we compare objects of our custom type? We can do it in different ways depending on the task. We can compare them by any single field or several fields.</p> 
   <p>To be able to sort, we must rewrite our <code class="language-java">Car</code> class using the <code class="language-java">Comparable</code> interface. For example, we can compare our <code class="language-java">Car</code> objects by their <code class="language-java">number</code>. Here's how you can implement it:</p> 
   <pre><code class="language-java">public class Car implements Comparable&lt;Car&gt; {
@@ -111,19 +111,18 @@ public static int compare (int x, int y) {
   <ul> 
    <li><code class="language-java">tom.compareTo(bob) == 0</code> should have the same boolean value as <code class="language-java">tom.equals(bob)</code></li> 
   </ul> 
-  <p>Kris is older than Bob, so our method should return <code class="language-java">1</code>, and Bob is younger than Kris, so our method returns <code class="language-java">-1</code>:</p> 
-  <ul> 
-   <li><code class="language-java">sgn(kris.compareTo(bob)) == -sgn(bob.compareTo(kris))</code></li> 
-  </ul> 
   <p>If we compare our people by their height, Tom is taller than Kris and Kris is taller than Bob. Therefore, Tom is taller than Bob:</p> 
   <ul> 
    <li><code class="language-java">(tom.compareTo(kris) &gt; 0 &amp;&amp; kris.compareTo(bob) &gt; 0)</code> implies <code class="language-java">tom.compareTo(bob) &gt; 0</code></li> 
   </ul> 
+  <p>Kris is older than Bob, hence Bob is younger than Kris:</p> 
+  <ul> 
+   <li><code class="language-java">kris.compareTo(bob) &gt; 0</code> and <code class="language-java">bob.compareTo(kris) &lt; 0</code></li> 
+  </ul> 
   <p>Tom and Bob are the same age, so they both should be younger or older than Kris:</p> 
   <ul> 
-   <li><code class="language-java">tom.compareTo(bob) == 0</code> implies that <code class="language-java">sgn(tom.compareTo(kris)) == sgn(bob.compareTo(kris))</code></li> 
+   <li><code class="language-java">tom.compareTo(bob) == 0</code> implies that <code class="language-java">tom.compareTo(kris) &gt; 0</code> and <code class="language-java">bob.compareTo(kris) &gt; 0</code> or <code class="language-java">tom.compareTo(kris) &lt; 0</code> and <code class="language-java">bob.compareTo(kris) &lt; 0</code> </li> 
   </ul> 
-  <p>In these examples, <code class="language-java">sgn(expression)</code> repesents the mathematical <code class="language-java">signum</code> function, which returns <code class="language-java">-1</code>, <code class="language-java">0</code>, or <code class="language-java">1</code>, according to whether the expression value is negative, zero, or positive, respectively.</p> 
   <p>This will ensure that we can safely use objects in sorted sets and sorted maps.</p> 
   <h2>Conclusion</h2> 
   <p>In this topic, we explored how to use the <code class="language-java">Comparable</code> interface in our custom classes to define natural ordering algorithms. We also learned how to properly implement the <code class="language-java">compareTo</code> method.</p>
