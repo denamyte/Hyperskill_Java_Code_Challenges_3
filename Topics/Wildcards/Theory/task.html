@@ -50,7 +50,7 @@ public void upperBoundedMethod(List&lt;? extends Book&gt; books) {
 
     books.add(new Album()); // compile-time error
     books.add(new Book());  // compile-time error
-    books.add(null); // also fine, because of null is a special type-independent value
+    books.add(null); // also fine, because null is a special type-independent value
 }</code></pre> 
   <p>Surprisingly, some lines of <code class="language-java">upperBoundedMethod</code> won't compile. Upper bounded wildcards are able to read content as a <code class="language-java">Book</code> type, but they are not able to write any content except for a null value.</p> 
   <p>Let's explain the logic behind these read and write permissions. Because the method accepts lists parameterized by <code class="language-java">Book</code> or any of its subtypes (<code class="language-java">List&lt;Books&gt;</code>, <code class="language-java">List&lt;Album&gt;</code> or <code class="language-java">List&lt;Booklet&gt;</code>), any argument can be read as an object of type <code class="language-java">Book</code>. Writing to a wildcard argument, however, is prohibited to avoid runtime errors. To see why, suppose that a <code class="language-java">List&lt;Album&gt;</code> was passed in, but then we try to add an instance of <code class="language-java">Book</code> to this list. This <code class="language-java">Book</code> object will be treated as an <code class="language-java">Album</code> object in the future, which will likely lead to a runtime error.</p> 
@@ -138,4 +138,3 @@ private static &lt;T&gt; void reverseCaptured(List&lt;T&gt; list) {
   <p>Wildcards are a convenient and safe way of implementing an equivalent of inheritance in Generics. They are declared with the <code class="language-java">&lt;?&gt;</code> symbol and are widely used with upper or lower bounds to restrict type parameters.</p>
  </body>
 </html>
-<a href="https://hyperskill.org/learn/step/9455">Show topic summary</a>

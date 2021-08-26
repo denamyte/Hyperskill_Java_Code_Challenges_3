@@ -82,6 +82,25 @@ public class Account {
         .collect(groupingBy(Account::getStatus, summingLong(Account::getBalance)));</code></pre> 
   <p>The code above groups accounts by the <code class="language-java">status</code> field and applies a downstream <code class="language-java">summingLong</code> collector to the <code class="language-java">List</code> values created by the <code class="language-java">groupingBy</code> operator. The resulting map contains the following entries:</p> 
   <pre><code class="language-java">{ REMOVED=0, ACTIVE=24133, BLOCKED=60000 }</code></pre> 
+  <h2>Teeing collector</h2> 
+  <p>Java 12 introduced the <code class="language-java">teeing</code> collector which accepts two downstream collectors and a merger function as arguments and combines the results of the downstream collectors into the final result using the provided merger function. Let’s see how it works on an example using the same list of accounts as in the previous paragraph.</p> 
+  <p>Suppose we want to extract the following information from the collection of accounts: the number of blocked accounts and the total amount of balances of the blocked accounts.</p> 
+  <p>This is how we can use the teeing collector to solve our task:</p> 
+  <pre><code class="language-java">long[] countAndSum = accounts
+        .stream()
+        .filter(account -&gt; account.getStatus() == Status.BLOCKED)
+        .collect(Collectors.teeing(
+                Collectors.counting(),
+                Collectors.summingLong(Account::getBalance),
+                (count, sum) -&gt; new long[]{count, sum})
+        );</code></pre> 
+  <p>First, we filter the stream to get accounts with the <code class="language-java">BLOCKED</code> status. Then we use the <code class="language-java">teeing</code> collector and pass the <code class="language-java">counting</code> collector and the <code class="language-java">summingLong</code> collector to it to get the count of the filtered items and the sum of their balances. After that, we put the results of the downstream collectors to an array, which after the stream is processed will contain the following values: <code class="language-java">[2, 60000].</code></p> 
+  <p>In a similar way, we can use the teeing collector to return any two values from a single stream.</p> 
+  <p></p>
+  <div class="alert alert-primary">
+   This feature was added in Java 12, but our platform does not yet support this version of Java. This means that you cannot yet use the teeing collector to solve code challenges in the Code Editor on our website but you can use it in your IDE if your JVM version is 12 or higher.
+  </div>
+  <p></p> 
   <h2>Conclusion</h2> 
   <p>To divide stream elements into exactly two groups based on a specified condition, we can use <code class="language-java">Collectors.partitioningBy</code> collector. It accepts a predicate and produces a <code class="language-java">Map</code> with <code class="language-java">Boolean</code> keys and <code class="language-java">List</code> values. If we need to divide stream elements into more than two groups, we can use <code class="language-java">Collectors.groupingBy</code> collector. It accepts a classification function and groups elements according to it. The <code class="language-java">groupingBy</code> also produces a <code class="language-java">Map</code> with <code class="language-java">Lists</code> values and keys whose type is a return type of the classification function. Both collectors can take a predicate or a classification function accordingly and a downstream collector that is applied to the results of partitioning or grouping.</p>
  </body>

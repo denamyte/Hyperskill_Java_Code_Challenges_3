@@ -1,3 +1,4 @@
+<h2>Reification</h2>
 <html>
  <head></head>
  <body>
@@ -59,7 +60,7 @@ Integer[] array = col.toArray(new Integer[0]);</code></pre>
 // col has no type parameter information at runtime. 
 // Which array type should we create inside toArray() method without a parameter?
 Integer[] array = (Integer[]) col.toArray();</code></pre> 
-  <p>Since type erasure handles the type casting, it;s perfectly fine to call this method in the following way:</p> 
+  <p>Since type erasure handles the type casting, it's perfectly fine to call this method in the following way:</p> 
   <pre><code class="language-java">Collection&lt;Integer&gt; col = ... initializing of this Collection
 
 // toArray will create array of appropriate size 
