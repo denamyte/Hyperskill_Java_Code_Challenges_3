@@ -50,3 +50,4 @@ content:
 - Function composition
 - Optional
 - Handling requests with bodies
+- Threads as objects (1)
