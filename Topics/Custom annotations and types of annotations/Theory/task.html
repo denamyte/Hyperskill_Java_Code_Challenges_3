@@ -3,11 +3,11 @@
  <head></head>
  <body>
   <p>Java annotations provide meta information to source code. You probably have already seen and used some of them – like <code class="language-java">@Override</code> for one.<br> There are many other predefined annotations, but sometimes they are not enough. Here we will look at how to create your own annotation and how to process it.</p> 
-  <h2>Defining a new annotation </h2> 
+  <h5>Defining a new annotation </h5> 
   <p>Custom annotations have to be defined in <code class="language-java">@interface</code> files. Let's create a special annotation that represents class or method description with its author and version number. First, we define the <code class="language-java">@interface</code>:</p> 
   <pre><code class="language-java">public @interface Description {}</code></pre> 
   <p>Then there are a few things that can be specified in this class.</p> 
-  <h2>Retention policies</h2> 
+  <h5>Retention policies</h5> 
   <p>The first is annotation <strong>Retention</strong>. It specifies at which level your annotation will be applied. It is specified by <code class="language-java">@Retention</code> annotation on your custom annotation class, like in the following snippet:</p> 
   <pre><code class="language-java">@Retention(RetentionPolicy.RUNTIME)
 public @interface Description {}</code></pre> 
@@ -18,7 +18,7 @@ public @interface Description {}</code></pre>
   <p>Our custom <code class="language-java">@Description</code> annotation will have it as well (check the construction):</p> 
   <pre><code class="language-java">@Retention(RetentionPolicy.RUNTIME)
 public @interface Description {}</code></pre> 
-  <h2>Target types</h2> 
+  <h5>Target types</h5> 
   <p><code class="language-java">@Target</code> tells where the annotation can be placed: methods, packages, annotations themselves, etc. You can look at the table to find out all the available values. If you don't set up its value, the annotation will be applicable to all elements. </p> 
   <p>For our annotation we are going to use <strong>METHOD </strong>value: </p> 
   <pre><code class="language-java">@Retention(RetentionPolicy.RUNTIME)
@@ -71,7 +71,7 @@ public @interface Description {}</code></pre>
     </tr> 
    </tbody> 
   </table> 
-  <h2>Annotations parameters</h2> 
+  <h5>Annotations parameters</h5> 
   <p>Let's add some parameters to our annotation that should specify different parts of our description. These parameters have restrictions on the type:</p> 
   <ul> 
    <li>primitives;</li> 
@@ -94,7 +94,7 @@ public @interface Description {
     String description();
     int version() default 0;
 }</code></pre> 
-  <h2>Additional meta-annotations</h2> 
+  <h5>Additional meta-annotations</h5> 
   <p>The annotation can be marked as <strong><code class="language-java">@Repeatable</code></strong> and then it can be used multiple times at the same place. You should provide a container class name: the class with an array collecting repeatable annotations:</p> 
   <pre><code class="language-java">@Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
@@ -114,7 +114,7 @@ public @interface Description {...}</code></pre>
 public void testMethod() {</code></pre> 
   <p><strong><code class="language-java">@Documented</code></strong> takes no parameters and includes an annotation in the Javadoc documentation.</p> 
   <p>If the annotation is marked as <strong><code class="language-java">@Inherited</code></strong>, then it will be applied to all subclasses of the annotated class.</p> 
-  <h2>Processing annotations</h2> 
+  <h5>Processing annotations</h5> 
   <p>Now when we have defined our custom <code class="language-java">@Description</code> annotation, we should also describe its processing. We want it to write the method description, author name, and version number to the console. </p> 
   <p>We will write a special class to process the annotation and construct the message to print method in it. As we made it <code class="language-java">@Repeatable</code>, we need to retrieve container annotation <code class="language-java">@Descriptions</code> first and then iterate over its <code class="language-java">@Description</code> annotations: </p> 
   <pre><code class="language-java">public class DescriptionProcessor {
@@ -171,7 +171,7 @@ public void testMethod() {</code></pre>
   <pre><code class="language-java">testMethod Descriptions: 
 Description: Testing method Author : John Doe Version : 0
 Description: Repeatable description Author : Richard Roe Version : 1</code></pre> 
-  <h2>Conclusion</h2> 
+  <h5>Conclusion</h5> 
   <p>Here you learned how to define custom annotation in Java:</p> 
   <ul> 
    <li>define annotation retention (<code class="language-java">SOURCE</code>, <code class="language-java">CLASS</code> or <code class="language-java">RUNTIME</code>) or use default one,</li> 
