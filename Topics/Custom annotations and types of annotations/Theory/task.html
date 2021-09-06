@@ -107,10 +107,8 @@ public @interface Descriptions {
 @Repeatable(Descriptions.class)
 public @interface Description {...}</code></pre> 
   <p>Now the annotation can be applied more than one time: </p> 
-  <pre><code class="language-java">@Descriptions(value = {
-        @Description(author = "John Doe", description = "first description"),
-        @Description(author = "Richard Roe", description = "second description"),
-})
+  <pre><code class="language-java">@Description(author = "John Doe", description = "first description")
+@Description(author = "Richard Roe", description = "second description")
 public void testMethod() {</code></pre> 
   <p><strong><code class="language-java">@Documented</code></strong> takes no parameters and includes an annotation in the Javadoc documentation.</p> 
   <p>If the annotation is marked as <strong><code class="language-java">@Inherited</code></strong>, then it will be applied to all subclasses of the annotated class.</p> 
@@ -122,11 +120,11 @@ public void testMethod() {</code></pre>
     public void printDescription(Object o) {
         // Get processing object class
         Class&lt;?&gt; processingClass = o.getClass();
-        for (Method method : processingClass.getDeclaredMethods()) {
+        for (Method m : processingClass.getDeclaredMethods()) {
             // Check if method has container @Descriptions annotation
-            if (method.isAnnotationPresent(Descriptions.class)) {
+            if (m.isAnnotationPresent(Descriptions.class)) {
                 // Get container annotation
-                Descriptions descriptions = method.getAnnotation(Descriptions.class);
+                Descriptions descriptions = m.getAnnotation(Descriptions.class);
                 StringBuilder sb = new StringBuilder();
                 // Iterate over exact @Description annotations
                 for (Description d : descriptions.value()) {
@@ -139,7 +137,7 @@ public void testMethod() {</code></pre>
                             .append("\n");
                 }
                 // Print result
-                System.out.println(method.getName() + " Descriptions: ");
+                System.out.println(m.getName() + " Descriptions: ");
                 System.out.println(sb.toString());
             }
         }
@@ -148,12 +146,17 @@ public void testMethod() {</code></pre>
   <p>Here we used <strong>java reflection </strong>to get the object class's methods. Then we iterate them to find <code class="language-java">@Description</code> annotated methods and create a message to be shown.</p> 
   <p>Now it's testing time. Let's create a test method and add an annotated method there: </p> 
   <pre><code class="language-java">public class TestClass {
-    @Descriptions(value = {
-            @Description(author = "John Doe", description = "Testing method"),
-            @Description(author = "Richard Roe", description = "Repeatable description", version = 1),
-    })
+    @Description(
+            author = "John Doe", 
+            description = "Testing method"
+    )
+    @Description(
+            author = "Richard Roe", 
+            description = "Repeatable description", 
+            version = 1
+    )
     public void testMethod() {
-        System.out.println("This is my method to test the @Description annotation");
+        System.out.println("The method to test the @Description annotation");
     }
 }</code></pre> 
   <p>And now we can test it in <code class="language-java">Main</code> method: </p> 

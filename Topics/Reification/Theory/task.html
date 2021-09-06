@@ -3,10 +3,10 @@
  <head></head>
  <body>
   <p>Generics are known for their type safety, which is obviously a good thing. However, it has a flip side. As we've already discussed, type erasure — the compiler process that preserves type safety — can complicate program logic. Now it's time to discuss another generics-related notion: reification.</p> 
-  <h2>What is reification</h2> 
+  <h5>What is reification</h5> 
   <p>Type erasure only affects certain data types — other types are not affected and preserve their type data in byte code. Types that save information about themselves during type erasure are called <em>reifiable</em>, while types whose information is erased are called <em>non-reifiable</em>. The term reification refers to the process of making certain type parameters available at runtime as well as at compile-time.</p> 
-  <h2>The two groups</h2> 
-  <p>Let's recall what types are replaced during type erasing and can be called non-reifiable. Non-reifiable types include:</p> 
+  <h5>The two groups</h5> 
+  <p>Let's recall what types are replaced during type erasure and can be called non-reifiable. Non-reifiable types include:</p> 
   <ul> 
    <li> <p>parameterized types like <code class="language-java">&lt;T&gt;</code>, which are replaced by <code class="language-java">Object</code>. </p> </li> 
    <li> <p>bounded generics or wildcards. For example, <code class="language-java">&lt;T extends Number&gt;</code> and <code class="language-java">&lt;? extends Number&gt;</code> are replaced by <code class="language-java">Number</code>.</p> </li> 
@@ -17,9 +17,9 @@
    <li> <p>non-parameterized types such as <code class="language-java">String</code>, <code class="language-java">Number</code> and other non-generic classes. </p> </li> 
    <li> <p>more complicated reifiable types, which are technically equivalent to <code class="language-java">Object</code>. The first is a <em>raw </em>type. It is a type that can be parameterized but is not. For instance, if class <code class="language-java">Box&lt;T&gt;</code> is declared as <code class="language-java">Box box = new Box()</code> then it's a raw type. The second is an unbounded wildcard type, for example, <code class="language-java">Box&lt;?&gt;</code>. It includes arrays whose component type is reifiable as well.</p> </li> 
   </ul> 
-  <h2>Non-reifiable limitations</h2> 
+  <h5>Non-reifiable limitations</h5> 
   <p>The fact that non-reifiable types are not present at runtime leads to some limitations: </p> 
-  <p>1) It is prohibited to create a non-reifiable typed instance.</p> 
+  <p>1) It is prohibited to create an instance of a non-reifiable type.</p> 
   <p>Suppose you need to create an instance of a class of <code class="language-java">T</code> type inside a parameterized class. It looks fine to call a generic constructor, however, it leads to a compilation error</p> 
   <pre><code class="language-java">class Box&lt;T&gt; {
     private T instance;
@@ -67,7 +67,7 @@ Integer[] array = (Integer[]) col.toArray();</code></pre>
 Integer[] array = col.toArray(new Integer[0]);</code></pre> 
   <p>In this manner, using a reifiable type such as Integer preserves type information at runtime. </p> 
   <p>5) Casting to non-reifiable types usually results in a warning notifying the programmer that this practice may lead to exceptions.</p> 
-  <h2>Conclusion</h2> 
+  <h5>Conclusion</h5> 
   <p>Recognizing the distinction between non-reifiable and reifiable types can help you avoid errors when implementing generics and wildcards. Non-reifiable types have limitations that prohibit certain operations involving creating instances and arrays, using the <code class="language-java">instanceof</code> operator, and creating parameterized successors. In addition, casting to non-reifiable types may result in a loss of type safety.</p>
  </body>
 </html>

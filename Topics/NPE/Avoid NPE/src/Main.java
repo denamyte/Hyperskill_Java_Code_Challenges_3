@@ -8,6 +8,6 @@ class FixingNullPointerException {
         string = "null".equals(string) ? null : string;
         /* Do not change code above */
 
-        System.out.println(string.toLowerCase());
+        System.out.println(string == null ? "NPE!" : string.toLowerCase());
     }
 }
