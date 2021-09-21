@@ -1,15 +1,16 @@
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
-import java.util.stream.*;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 class BadWordsDetector {
 
-    private static Stream<String> createBadWordsDetectingStream(String text, 
-                                                                List<String> badWords) {
-        // write your code here
-        return Stream.of();
+    private static Stream<String> createBadWordsDetectingStream(String text, List<String> badWords) {
+//        List<String> textWords = List.of(text.split(""));
+//        return badWords.stream().filter(textWords::contains).distinct().sorted();
+        return Stream.of(text.split(" "))
+                .filter(badWords::contains)
+                .distinct()
+                .sorted();
     }
 
     /* Do not change the code below */

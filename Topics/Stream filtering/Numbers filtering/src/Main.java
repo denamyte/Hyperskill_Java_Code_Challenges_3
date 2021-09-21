@@ -1,12 +1,19 @@
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 class EvenAndOddFilter {
 
+    /**
+     * Unite the streams into one, filter it, sort it, drop 2 first members.
+     */
     public static IntStream createFilteringStream(IntStream evenStream, IntStream oddStream) {
-        return // write your stream here
+        return IntStream.concat(evenStream, oddStream)
+                .filter(value -> value % 15 == 0)
+                .sorted()
+                .skip(2);
     }
 
     // Don't change the code below
