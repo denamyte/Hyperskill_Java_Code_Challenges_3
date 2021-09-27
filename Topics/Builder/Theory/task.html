@@ -2,7 +2,7 @@
 <html>
  <head></head>
  <body>
-  <h2 style="text-align: center;">The design problem</h2> 
+  <h5 style="text-align: center;">The design problem</h5> 
   <p>Imagine a pleasant situation that you are in a restaurant and making an order. The restaurant has all these signature dishes, each of them consisting of a set of ingredients. It can happen that a guest wants their dish modified: suppose, you don't eat onion or are allergic to peanuts or some other specific ingredient. The chef then would have to change the properties of a dish dynamically. In situations like that, the <strong>Builder </strong>design pattern really saves the day. Let's see how. </p> 
   <p>Imagine you work on some GUI library. As a developer, you do your best to make your library convenient for application developers who will use it later. The library has an alert dialog element, which contains title, text, apply and cancel buttons, footer, and picture. You decided to create a class describing it:</p> 
   <pre><code class="language-java">class AlertDialog {
@@ -24,7 +24,7 @@
 }</code></pre> 
   <p>To create an instance, just call the constructor:</p> 
   <pre><code class="language-java">AlertDialog alertDialog = new AlertDialog("title", "text", "applyButton", "cancelButton", "footer", "pathToPicture");</code></pre> 
-  <p>Suppose an application developer needs an element with the title and cancel button only. In such a case, your constructor doesn't look friendly and affects the code readability:</p> 
+  <p>Suppose an application developer needs an element with the title and apply button only. In such a case, your constructor doesn't look friendly and affects the code readability:</p> 
   <pre><code class="language-java">AlertDialog alertNotification = new AlertDialog("Completed successfully", null, "Ok", null, null, null);</code></pre> 
   <p>To avoid such constructor calls in application code, you create the corresponding constructor:</p> 
   <pre><code class="language-java">class AlertDialog {
@@ -41,7 +41,7 @@
 alertDialog.setTitle("Completed successfully");
 alertDialog.setApplyButton("Ok");</code></pre> 
   <p>It solves the problem, but in case if AlertDialog instances must be immutable, the solution doesn't work.</p> 
-  <h2 style="text-align: center;">The Builder pattern</h2> 
+  <h5 style="text-align: center;">The Builder pattern</h5> 
   <p>The <strong>Builder</strong> pattern is a <strong>creational</strong> design pattern used to separate complex object construction from its representation. It can be used to create objects with a specified structure step-by-step. The main benefit is that you can avoid the so-called constructor pollution. </p> 
   <p style="text-align: center;"><img alt="" height="547" src="https://ucarecdn.com/3cde3c0f-45f0-429d-9600-7157e3b40d94/" width="847"></p> 
   <p>The builder pattern has the following components: </p> 
@@ -58,7 +58,7 @@ alertDialog.setApplyButton("Ok");</code></pre>
    <li> <p><strong>Product</strong> is the complex object constructed using the concrete builder class which contains the final user-requested representation.</p> </li> 
   </ul> 
   <p>In our example, we will create a simple <em>AlertDialog</em> with a fixed structure: <em>Title, Text, ApplyButton, </em>and <em>CancelButton. </em>Pay attention that the Builder pattern allows us to avoid the fixed properties, but it can't allow extending them. You will see it further.</p> 
-  <h2 style="text-align: center;">Example</h2> 
+  <h5 style="text-align: center;">Example</h5> 
   <p>There are only two steps, but stay vigilant as the first step is capacious and powerful. The implementation of <em>AlertDialog </em>contains its Builder:</p> 
   <pre><code class="language-java">class AlertDialog {
     private String title;
@@ -157,7 +157,7 @@ The cancelButton is: "Cancel"
 The title is: "One button dialog"
 The text is: "You can use `Close` only"
 The cancelButton is: "Close"</code></pre> 
-  <h2 style="text-align: center;">Conclusion</h2> 
+  <h5 style="text-align: center;">Conclusion</h5> 
   <p>We have created an encapsulated step-by-step creational process. Also, the builder provides an opportunity to create an object with a variable set of steps and consequently instantiated properties (unlike "one-step" Factory Patterns).</p>
  </body>
 </html>

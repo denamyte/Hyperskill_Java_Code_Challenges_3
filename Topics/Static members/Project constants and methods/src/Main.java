@@ -1,7 +1,13 @@
+import java.util.stream.Stream;
+
 public class Main {
 
     public static void main(String[] args) {
-        // write your code using the existing class ConstantsAndUtilities
+        Stream.of(ConstantsAndUtilities.A_CONSTANT_TTT,
+                  ConstantsAndUtilities.B_CONSTANT_QQQ,
+                  ConstantsAndUtilities.getMagicString(),
+                  ConstantsAndUtilities.convertStringToAnotherString("aa"))
+                .forEach(System.out::println);
     }
 
 }
