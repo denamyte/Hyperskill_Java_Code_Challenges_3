@@ -5,7 +5,7 @@
   <p>When we want to pass information to a web application server, we usually opt for <code class="language-json">POST</code> methods. We can actually send information of any type, even an unformatted raw string. But we tend to work with JSON, as it is one of the easiest formats to work with. JSON data can be easily converted to Java objects with Spring, so we can work with more complex data.</p> 
   <p>We will use an annotation called <code class="language-json">@RequestBody</code> to accept JSON data via <code class="language-json">@RestController</code>. This annotation can send data of a specific format, including JSON, in a request's body.</p> 
   <p>We will use the basic project. If you don't have this application, visit the <a target="_blank" href="https://start.spring.io/" rel="noopener noreferrer nofollow">Spring Initializr</a> site and generate it with Gradle and Java.</p> 
-  <h2>Sending an object to the server</h2> 
+  <h5>Sending an object to the server</h5> 
   <p>The <code class="language-json">@RequestBody</code> annotation is used in <code class="language-json">@RestController</code> to send data to a path through the <strong>body</strong> of the request. A request body can be used to send data in a variety of formats. By default, Spring expects data in <strong>JSON format</strong>, so we will start by looking at how JSON data can be sent using a <code class="language-json">@RequestBody</code> annotation.</p> 
   <p>First, we will create an object to represent the JSON data that will be sent to the application. In this example, we will create an application that works with user data, including the name, id, phone number, and status of the user's account. Our object can be set up as shown below:</p> 
   <pre><code class="language-java">public class UserInfo {
@@ -40,7 +40,7 @@ public class UserInfoController {
   <p style="text-align: center;"><img alt="" src="https://ucarecdn.com/e4e2caff-bd47-4b76-ad97-3c9f8257de02/"></p> 
   <p>When adding a body in Postman, you can choose the JSON format by setting the raw option and navigating to JSON in the dropdown menu. It sends the provided JSON data in the request body to the <code class="language-json">user</code> object in our code. Spring can construct a <code class="language-json">UserData</code> object with JSON properties and initialize it with getters and setters implemented in the code.</p> 
   <p>We can send more complex data to our application with <code class="language-json">@RequestBody</code>. There are a few other formats we can utilize in the<code class="language-json">@RequestBody</code> annotation. We will explore them in the next section.</p> 
-  <h2>Sending multiple objects</h2> 
+  <h5>Sending multiple objects</h5> 
   <p>It is possible to send multiple JSON objects in a single request using a list of objects in our <code class="language-json">@RequestBody</code>.To implement a list-based <code class="language-json">@RequestBody</code> , we need to change the type from a single object to a list of objects:</p> 
   <pre><code class="language-java">@RestController
 public class UserInfoController {
@@ -53,7 +53,7 @@ public class UserInfoController {
   <p>In this example, our <code class="language-json">@RequestBody</code> now accepts a list of <code class="language-json">UserInfo</code> type. So the JSON we send to the server should now be <strong>a list </strong>of JSON objects. Use rectangular brackets <code class="language-json">[]</code> to create a list of JSON objects. A list contains a sequence of one or more JSON objects, as shown below:</p> 
   <p style="text-align: center;"><img alt="" src="https://ucarecdn.com/09aae443-7bec-426a-a74b-e275079974d7/"></p> 
   <p>After the request has been sent, the JSON array can be iterated, and each object is placed in the <code class="language-json">UserInfo</code> list. In our example above, we output the number of objects that have been passed through the request.</p> 
-  <h2>Additional data formats</h2> 
+  <h5>Additional data formats</h5> 
   <p>In addition to JSON arrays, it is also possible to use a different format. For example, we can use XML to pass objects through our <code class="language-json">@RequestBody</code> annotation. To do this, we need to add <code class="language-json">consumes = MediaType.APPLICATION_XML_VALUE</code> to the <code class="language-json">@PostMapping</code> annotation:</p> 
   <pre><code class="language-java">@RestController
 public class UserInfoController {
@@ -70,7 +70,7 @@ public class UserInfoController {
    <a target="_blank" href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/http/MediaType.html" rel="noopener noreferrer nofollow">official documentation</a>.
   </div>
   <p></p> 
-  <h2>Conclusion</h2> 
+  <h5>Conclusion</h5> 
   <p>In this topic, we have discussed a few ways to make <code class="language-json">@RestController</code> handle requests with bodies:</p> 
   <ol> 
    <li>Add a <code class="language-json">@RequestBody</code> annotation to the parameter of the mapping;</li> 

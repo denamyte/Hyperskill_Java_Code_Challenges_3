@@ -51,3 +51,4 @@ content:
 - Optional
 - Handling requests with bodies
 - Threads as objects (1)
+- Custom exceptions

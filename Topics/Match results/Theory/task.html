@@ -3,7 +3,7 @@
  <head></head>
  <body>
   <p>A simple check whether a string contains a substring matching our regular expression is not the only thing we can do with a <code class="language-java">Matcher</code>object. It also provides us with additional information about matches, which is essential in some tasks.</p> 
-  <h2 style="text-align: center;">Getting match results</h2> 
+  <h5 style="text-align: center;">Getting match results</h5> 
   <p>As you know, the <code class="language-java">find</code> method of <code class="language-java">Matcher</code> can check whether a substring of a string matches the pattern. Here is an example.</p> 
   <pre><code class="language-java">String javaText = "Java supports regular expressions. LET'S USE JAVA!!!";
 
@@ -30,7 +30,7 @@ System.out.println(result.group()); // "Java"</code></pre>
     System.out.println("No matches found");
 }</code></pre> 
   <p>This code prints <strong>"No matches found"</strong> if the <code class="language-java">find</code> method returns <code class="language-java">false</code>. It also makes sure that <code class="language-java">start()</code>, <code class="language-java">end()</code>, <code class="language-java">group()</code> are invoked only after the <code class="language-java">find()</code> method.</p> 
-  <h2 style="text-align: center;">Iterating over multiple matches</h2> 
+  <h5 style="text-align: center;">Iterating over multiple matches</h5> 
   <p>Sometimes more than one substring matches the same pattern. In the previous example, there are two suitable strings <strong>"Java"</strong> and <strong>"JAVA"</strong>, because the pattern is case insensitive. The <code class="language-java">find()</code> method allows us to iterate in a loop over all substrings that match the pattern.</p> 
   <pre><code class="language-java">String javaText = "Java supports regular expressions. LET'S USE JAVA!!!";
 
@@ -44,7 +44,7 @@ while (matcher.find()) {
   <pre><code class="language-java">group: Java, start: 0
 group: JAVA, start: 45</code></pre> 
   <p>The condition of the loop allows invoking<code class="language-java">start()</code> and <code class="language-java">group()</code>only when the <code class="language-java">find()</code> method returns <code class="language-java">true</code>.</p> 
-  <h2 style="text-align: center;">Conclusions</h2> 
+  <h5 style="text-align: center;">Conclusions</h5> 
   <p>As you can see, <code class="language-java">Matcher</code> saves all the necessary info about matches. We can learn where every matching substring starts and where it ends and how it looks like. Later this data can be saved in a <code class="language-java">MatchResult</code> object.</p>
  </body>
 </html>

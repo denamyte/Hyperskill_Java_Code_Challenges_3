@@ -1,3 +1,4 @@
+<h2>Binary heap in Java</h2>
 <html>
  <head></head>
  <body>
@@ -10,7 +11,7 @@
   <p>The figure below is an example of a min-heap:</p> 
   <p style="text-align: center;"><img alt="" height="339" src="https://ucarecdn.com/fff19356-7f02-4b34-8312-3eb4fe7a42dd/" width="459"></p> 
   <p>In this topic, we will consider how this data structure can be implemented in Java.</p> 
-  <h2 style="text-align: center;">Implementation in Java</h2> 
+  <h5 style="text-align: center;">Implementation in Java</h5> 
   <p>As you remember, there is a convenient way of storing binary trees in <strong>arrays</strong>, where children of the node $i$ will be nodes numbered <span class="math-tex">\(2i\)</span> and <span class="math-tex">\(2i+1\)</span>. Because the tree is complete, it is safe to say that the array will have no empty spaces and its size will be proportional to the size of the heap, which is very good in terms of memory management.</p> 
   <p>Take a look at the main class for min-heap implementation:</p> 
   <pre><code class="language-java">public class MinHeap {
@@ -90,7 +91,7 @@
   <p>- <code class="language-java">void minHeapify(pos)</code> – pushes the value at the <code class="language-java">pos</code> position to its proper place. This method is required when we remove the minimum element with <em>extractMin()</em>, replacing it with an element from the bottom then shifting it down to its required place. During the addition operation, we conversely lift the element from the bottom to where it should be, so this operation doesn’t need a helper method, unlike <em>extractMin()</em>;</p> 
   <p>- <code class="language-java">void minHeap()</code> – a method which transforms an arbitrary array into a min-heap in place. In other words, it is equivalent to several uses of <code class="language-java">insert(elem)</code>, only more elegant. The usage of methods for creating a heap should be obvious: in the first case, we already have all the elements, and in the second case, we are told which nodes to add one by one. Please note that you should opt for <code class="language-java">minheap()</code> method where you can: it has <span class="math-tex">\(O(n)\)</span> asymptote for all elements altogether, while <code class="language-java">insert(elem)</code> has <span class="math-tex">\(O(\log n)\)</span> for each element, which is slower.</p> 
   <p>You have probably noticed that the zeroth element of the <code class="language-java">heap</code> array is initialized with the smallest integer. This is done in order to ensure that surfacing of the number during addition will eventually finish, since <code class="language-java">while (heap[current]&lt;heap[current / 2])</code> will stop when <code class="language-java">heap[current / 2]</code> becomes the smallest integer.</p> 
-  <h2>Usage examples</h2> 
+  <h5>Usage examples</h5> 
   <p>Now it's time to learn how to use the class:</p> 
   <pre><code class="language-java">MinHeap minHeap = new MinHeap(15);
 minHeap.insert(5);
@@ -108,9 +109,9 @@ minHeap.insert(4);
 out.println(minHeap.extractMin()); // 4
 out.println(minHeap.extractMin()); // 13</code></pre> 
   <p>At first, we initialize the heap, knowing in advance that its size will not be greater than 15. Then we add elements 5, 45, 83, 23, 34, 71, 36, 10 and 13. After that we extract two minimum values, which are clearly 5 and 10. Next, we add 4 to the heap and it becomes the minimum element. Finally, we call the "extract Min" method twice, and it returns 4 and 13 respectively. Both addition and minimum extraction operations work in <span class="math-tex">\(O(\log n)\)</span>.</p> 
-  <h2 style="text-align: center;"><strong>Heapsort</strong></h2> 
+  <h5 style="text-align: center;">Heapsort</h5> 
   <p>We will try to code this sort (which we discussed in theory) during this lesson. In fact, we already have minHeap() method that transforms an array into a min-heap, and we simply need to call extractMin() <em>n</em> times to get a sorted array. We won't describe the full code of heapsort here: you will receive a task for that later, and theoretical description given earlier should suffice. To remind you, the resulting algorithm will have <span class="math-tex">\(O(n)+O(n \log n)=O(n \log n)\)</span> time complexity and <span class="math-tex">\(O(n)\)</span> memory complexity. The latter is achieved by algorithm working in place: no extra memory is required.</p> 
-  <h2 style="text-align: center;"><strong>Conclusion</strong></h2> 
+  <h5 style="text-align: center;">Conclusion</h5> 
   <p>In this lesson, we examined how binary heaps work and considered the main operations, time complexity and heapsort. But there is a catch: Java has <code class="language-java">PriorityQueue</code>, an innate binary heap that can work with arbitrary data types. In most cases, this binary heap implementation is enough, but you should know its structure anyway: you might need to modify the algorithm which you cannot do with PriorityQueue. During the next exercises you will get an opportunity to write your own PriorityQueue.</p>
  </body>
 </html>

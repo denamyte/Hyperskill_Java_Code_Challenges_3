@@ -1,8 +1,9 @@
+<h2>Iterator and Iterable</h2>
 <html>
  <head></head>
  <body>
   <p>As you know, there is a <em>for-each </em>loop and the <code class="language-java">forEach</code> method to iterate over elements of a collection. Both of them provide a simple and unified way to process different types of collections. In this topic, you will learn more about why they work and how to use them.</p> 
-  <h2 style="text-align: center;">Being iterable</h2> 
+  <h5 style="text-align: center;">Being iterable</h5> 
   <p>The <em>Java Standard Library</em> has a special interface called <code class="language-java">Iterable</code>. Implementing this interface allows objects of a class to be targets of the<em> for-each</em> loop. If you think that the <code class="language-java">Collection</code> interface extends this to be <strong>iterable</strong>, you are absolutely right.</p> 
   <pre><code class="language-java">public interface Collection&lt;E&gt; extends Iterable&lt;E&gt; { /* methods */ }</code></pre> 
   <p></p>
@@ -34,7 +35,7 @@ strings.forEach(System.out::println);</code></pre>
    <li><code class="language-java">void forEach(Consumer&lt;T&gt; action)</code> takes an action and executes it on each element of the collection, it can be used together with lambda expressions and method references.</li> 
   </ul> 
   <p>All collections that inherit the <code class="language-java">Collection</code> interface have these methods.</p> 
-  <h2 style="text-align: center;">Using iterators</h2> 
+  <h5 style="text-align: center;">Using iterators</h5> 
   <p>The <code class="language-java">Iterator&lt;T&gt;</code> is a universal mechanism for iterating over collections regardless of their structure. It takes elements in the order provided by the collection. In some sense, it is like a moveable "pointer" to an element of the collection.</p> 
   <p></p>
   <div class="alert alert-primary">
@@ -76,7 +77,7 @@ while (iter.hasNext()) {
 
 System.out.println(set); // [10, 14, 18]</code></pre> 
   <p>In this example, the <strong>iterator</strong> gets elements according to the sorting order and successfully removes some of them.</p> 
-  <h2 style="text-align: center;">An iterator for lists</h2> 
+  <h5 style="text-align: center;">An iterator for lists</h5> 
   <p>There is a special iterator for lists called <code class="language-java">ListIterator</code> which extends the common <code class="language-java">Iterator</code> interface. It allows the programmer to traverse the list in either direction, modify the list during iteration, and obtain the current position in the list.</p> 
   <p>In addition to standard <code class="language-java">Iterator</code>'s methods, this iterator provides the following methods:</p> 
   <ul> 
@@ -114,7 +115,7 @@ while (iterator.hasPrevious()) {
   </div>
   <p></p> 
   <p>This concludes our consideration of iterators.</p> 
-  <h2>To sum up</h2> 
+  <h5>To sum up</h5> 
   <p>Implementing <code class="language-java">Iterable</code> interface allows objects of a class to be targets of the<em> for-each</em> loop and more than that. This interface provides <code class="language-java">iterator</code> and <code class="language-java">forEach</code> methods, which are inherited by all collections of the <code class="language-java">Collection</code> interface.</p> 
   <p>The <code class="language-java">iterator</code> method returns an <code class="language-java">Iterator&lt;T&gt;</code> object, which implements an interface for iterating over collections regardless of their structure. It takes elements in the order provided by the collection and has <code class="language-java">hasNext</code>, <code class="language-java">next</code>, and <code class="language-java">remove</code> methods. The first two are actually used by a <em>for-each</em> loop, which does not allow removing elements.</p> 
   <p>A <code class="language-java">ListIterator</code> is a special iterator for lists that extends the <code class="language-java">Iterator</code> interface. It has additional methods that allow traversing the list in either direction, modify the list during iteration, and obtain the current position.</p>

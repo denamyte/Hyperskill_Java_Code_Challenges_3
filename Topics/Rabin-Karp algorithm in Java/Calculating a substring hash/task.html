@@ -3,7 +3,7 @@
  <head></head>
  <body>
   <p>Before solving this problem, let's learn a bit more about the polynomial hash function.</p> 
-  <h2>One property of the polynomial hash function</h2> 
+  <h5>One property of the polynomial hash function</h5> 
   <p>The polynomial hash function has the following property: if we know hash values for all prefixes of some string, we can find a hash value for any substring of this string in $O(1)$. In other words, if we precalculate hashes for prefixes of a string only once, we will get a fast way to compute a hash for arbitrary substrings of this string. Let's now take a look at how this approach works in details.</p> 
   <p>Consider a string $s = s_0s_1...s_{n-1}$. A polynomial hash for a substring $s[i : j]$ can be calculated as follows:</p> 
   <p>$$ h_P(s[i : j]) = \left(s_i \cdot a^0 + s_{i + 1} \cdot a^1 + ... + s_{j-1} \cdot a^{j - i - 1} \right) \ mod \ m.$$</p> 
@@ -14,7 +14,7 @@
   <p>Using the slice notation, the expression above can be written as follows:</p> 
   <p>$$h_P(s[i : j]) \cdot a^{i} = \left(h_P(s[0:j]) - h_P(s[0:i])\right) \ mod \ m.$$</p> 
   <p>This formula gives us an explicit way to calculate a hash value for any substring of $s$ in $O(1)$ given that hashes for all prefixes are precalculated.</p> 
-  <h2>Formulating the problem</h2> 
+  <h5>Formulating the problem</h5> 
   <p>In this task, you need to apply the described approach to calculate hash values for given substrings of a string. One thing to keep in mind here is that we got hash value multiplied by $a^{i}$. Thus, to get the hash value itself, we need to perform a modulo division by $a^{i}$. For the sake of simplicity, we will avoid this step here and ask you to calculate hash values with this additional multiplier.</p> 
   <p><strong>Input</strong>: the first line contains a string $s$. The second one contains an integer $k$. Each of the following $k$ lines contain a pair of indexes $i$ and $j$ separated by space, such that $0 \le i &lt; j \le |s|$.</p> 
   <p><strong>Output</strong>: the first line should contain hash values for all prefixes of $s$. The second line should contain $k$ integers, each equal to $h_P(s[i : j]) \cdot a^{i}$ for the given in the input indexes $i$ and $j$. Note that all hash values have to be non-negative.</p> 

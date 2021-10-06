@@ -1,8 +1,9 @@
+<h2>Knuth-Morris-Pratt algorithm in Java</h2>
 <html>
  <head></head>
  <body>
   <p>The Knuth-Morris-Pratt algorithm is an approach that allows solving the substring searching problem in linear time in the worst case. Similarly to the naive one, the algorithm performs a symbol-by-symbol comparison of a pattern with each substring of a text. To reduce the number of comparisons, the algorithm uses the prefix function to identify an optimal pattern shift in case of symbols mismatch. In this topic, we will learn how to implement this algorithm in Java.</p> 
-  <h2>Implementing a method for calculation of the prefix function</h2> 
+  <h5>Implementing a method for calculation of the prefix function</h5> 
   <p>First, let's see how we can implement a method for calculation of the prefix function:</p> 
   <pre><code class="language-java">public static int[] prefixFunction(String str) {
     /* 1 */
@@ -38,7 +39,7 @@
    <li>Assign the length of the current border to the current substring.</li> 
    <li>Return the <code class="language-java">prefixFunc</code> array as a final result.</li> 
   </ol> 
-  <h2>Implementing the Knuth-Morris-Pratt algorithm</h2> 
+  <h5>Implementing the Knuth-Morris-Pratt algorithm</h5> 
   <p>Using the <code class="language-java">prefixFunction</code> method, the Knuth-Morris-Pratt algorithm can be implemented as follows:</p> 
   <pre><code class="language-java">public static List&lt;Integer&gt; KMPSearch(String text, String pattern) {
     /* 1 */
@@ -73,14 +74,14 @@
    <li>if the value of <code class="language-java">j</code> is equal to the length of the pattern, an occurrence is found. We need to add the corresponding index to the list of all occurrences. In this case, the index of the pattern symbol to be considered at the next iteration is equal to <code class="language-java">prefixFunc[j-1]</code> since we know that the previous ones already match.</li> 
    <li>Finally, we return the list of all occurrences.</li> 
   </ol> 
-  <h2>Examples</h2> 
+  <h5>Examples</h5> 
   <p>Below are several examples of how to use the method:</p> 
   <pre><code class="language-java">List&lt;Integer&gt; occurrences = KMPSearch("ABACABAD", "ABA");
 System.out.println(occurrences); // [0, 4]
 
 List&lt;Integer&gt; occurrences = KMPSearch("ABABA", "ABA");
 System.out.println(occurrences); // [0, 2]</code></pre> 
-  <h2>Summary</h2> 
+  <h5>Summary</h5> 
   <p>In this topic, we have learned how to implement the Knuth-Morris-Pratt algorithm in Java. We first have implemented a method for finding the prefix function, and then have applied this method to find all occurrences of a string in another string. Now, you can use this approach to efficiently solve the substring searching problem.</p>
  </body>
 </html>

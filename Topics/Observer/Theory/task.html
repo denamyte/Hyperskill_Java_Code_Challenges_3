@@ -2,9 +2,9 @@
 <html>
  <head></head>
  <body>
-  <h2 style="text-align: center;">Design problem</h2> 
+  <h5 style="text-align: center;">Design problem</h5> 
   <p>When you release new videos on YouTube, update your profile info on Facebook or share a photo on Instagram, all of this information is automatically sent to your subscribers and friends. It means that an observable state is changed and the observers are notified. If you subscribe to a mailing list, you will get a message about new goods and stocks from the observable domain. </p> 
-  <h2 style="text-align: center;">Observer</h2> 
+  <h5 style="text-align: center;">Observer</h5> 
   <p>The<strong> observer pattern</strong> is related to behavioral patterns. It is used to define the publisher-subscriber dependencies and the subscription mechanism so that when one object changes the state, all its dependents are notified and updated automatically.</p> 
   <p>The observer notifies all the interested parties about an event that has occurred or a change in its state. In many cases, the observer pattern is used to build low coupling – reducing the coherence of a class with its dependencies by destroying the connection of the initiator of some event with its handlers.</p> 
   <p>The observer pattern has the following components :</p> 
@@ -23,7 +23,7 @@
    <li>Concrete Observer implements Observer interface and reacts on updating (Observable notification).</li> 
   </ol> 
   <p>The observer pattern in JDK is available in <code class="language-java">java.util.Observer</code> and <code class="language-java">java.util.EventListener</code>.</p> 
-  <h2 style="text-align: center;">Practice example</h2> 
+  <h5 style="text-align: center;">Practice example</h5> 
   <p>YouTube is a good demonstration of the Observer pattern. We have a YouTube channel (Observable) and its subscribers (Observers). Every subscriber will be notified when a new video is released. </p> 
   <p>The Observable interface describes the operation to add, remove and notify the observers:</p> 
   <pre><code class="language-java">public interface Observable {
@@ -90,7 +90,7 @@
         youtubeChannel.releaseNewVideo("Design Patterns : Visitor");
     }
 }</code></pre> 
-  <h2 style="text-align: center;">Conclusion</h2> 
+  <h5 style="text-align: center;">Conclusion</h5> 
   <p>The observer pattern is applicable in the following cases:</p> 
   <ul> 
    <li>When changing one component influences other objects;</li> 

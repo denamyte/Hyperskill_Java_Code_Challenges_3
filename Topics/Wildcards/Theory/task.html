@@ -4,7 +4,7 @@
  <body>
   <p>Earlier, when we were discussing type bounds, we mentioned <em>Wildcards</em> as a feature that serves a similar purpose and has wide application.</p> 
   <p>Wildcards are a specific Java tool that allows the implementation of some compatibility between different generic objects. In essence, the wildcard is the "<strong>?"</strong> sign, used to indicate that a class, method, or field is compatible with different type parameters.</p> 
-  <h2>Why Wildcards?</h2> 
+  <h5>Why Wildcards?</h5> 
   <p>As an object-oriented language, Java relies on the concept of inheritance. But since generics are type-safe structures, it is impossible to introduce inheritance for generic objects.</p> 
   <p>To illustrate this problem, let's consider two classes:</p> 
   <pre><code class="language-java">class Book {}
@@ -20,7 +20,7 @@ List&lt;? extends Book&gt; albumsAndBooks = albums; // it is ok</code></pre>
   <pre><code class="language-java">List&lt;Album&gt; albums = new ArrayList&lt;&gt;();
 List&lt;? super Album&gt; albumsAndBooks = albums; // it is ok as well</code></pre> 
   <p>Wildcards are commonly used with type bounds. In the type bounds article, we learned how to use the <code class="language-java">extends</code> keyword; now we will also take a look at the <code class="language-java">super</code> keyword. Since wildcards are used with type bounding, they can be divided into three groups: <em>unbounded</em> wildcards, <em>upper bounded</em> wildcards, and <em>lower bounded</em> ones.</p> 
-  <h2>Upper Bounded Wildcards</h2> 
+  <h5>Upper Bounded Wildcards</h5> 
   <p>Upper Bounded Wildcards are used when we want to set an upper bound. It is set with the <code class="language-java">extends</code> keyword:</p> 
   <pre><code class="language-java">? extends ReferenceType</code></pre> 
   <p>This code can be read as "any type that is a subtype of <code class="language-java">ReferenceType</code>". In other words, if <code class="language-java">S</code> is a subtype of <code class="language-java">T</code>, then type <code class="language-java">List&lt;S&gt;</code> is considered to be a subtype of <code class="language-java">List&lt;? extends T&gt;</code>. This feature is known as covariance.</p> 
@@ -54,7 +54,7 @@ public void upperBoundedMethod(List&lt;? extends Book&gt; books) {
 }</code></pre> 
   <p>Surprisingly, some lines of <code class="language-java">upperBoundedMethod</code> won't compile. Upper bounded wildcards are able to read content as a <code class="language-java">Book</code> type, but they are not able to write any content except for a null value.</p> 
   <p>Let's explain the logic behind these read and write permissions. Because the method accepts lists parameterized by <code class="language-java">Book</code> or any of its subtypes (<code class="language-java">List&lt;Books&gt;</code>, <code class="language-java">List&lt;Album&gt;</code> or <code class="language-java">List&lt;Booklet&gt;</code>), any argument can be read as an object of type <code class="language-java">Book</code>. Writing to a wildcard argument, however, is prohibited to avoid runtime errors. To see why, suppose that a <code class="language-java">List&lt;Album&gt;</code> was passed in, but then we try to add an instance of <code class="language-java">Book</code> to this list. This <code class="language-java">Book</code> object will be treated as an <code class="language-java">Album</code> object in the future, which will likely lead to a runtime error.</p> 
-  <h2>Lower Bounded Wildcards</h2> 
+  <h5>Lower Bounded Wildcards</h5> 
   <p>Lower bounded Wildcards are introduced with the <code class="language-java">super</code> keyword followed by the lower bound:</p> 
   <pre><code class="language-java">? super ReferenceType</code></pre> 
   <p>This means "any type that is a supertype of <code class="language-java">ReferenceType</code>". For example, if <code class="language-java">S</code> is a supertype of <code class="language-java">T</code>, then <code class="language-java">List&lt;S&gt;</code> is considered to be a supertype of <code class="language-java">List&lt;? super T&gt;</code>. This feature is called contravariance.</p> 
@@ -88,7 +88,7 @@ public void lowerBoundedMethod(List&lt;? super Album&gt; albums) {
 }</code></pre> 
   <p>Similarly to upper-bounded wildcards, certain actions involving lower-bounded wildcards lead to compile-time errors. Since any of <code class="language-java">List&lt;Album&gt;</code>, <code class="language-java">List&lt;Book&gt;</code>, <code class="language-java">List&lt;Object&gt;</code> can be passed to <code class="language-java">lowerBoundedMethod</code>, we can't assert that the object being read has type <code class="language-java">Album</code> or <code class="language-java">Book</code>. We can only be certain that it has type <code class="language-java">Object</code>, since all classes inherit from <code class="language-java">Object</code>.</p> 
   <p>While <code class="language-java">Object</code> is the only type that can be read from albums, <code class="language-java">Album</code> is the only type that can be added. The reason is that only an instance of <code class="language-java">Album</code> can also be treated as an instance of <code class="language-java">Book</code> and <code class="language-java">Object</code>. If we tried to add an instance of <code class="language-java">Book</code>, this instance would be treated as <code class="language-java">Album</code> in the future. The compiler prevents such errors by issuing a compiler-time warning. </p> 
-  <h2>Get and Put Principle</h2> 
+  <h5>Get and Put Principle</h5> 
   <p>To decide whether extends or super should be used, it is worth remembering the Get and Put principle:</p> 
   <ul> 
    <li> <p>Use upper bounded wildcards when you only get values out of a structure (i.e. when you use only getters or similar methods).</p> </li> 
@@ -114,7 +114,7 @@ public void lowerBoundedMethod(List&lt;? super Album&gt; albums) {
     Remember that the purpose of inheritance prohibition in generics is to prevent run-time errors; otherwise, generics would lose their type safety.
   </div>
   <p></p> 
-  <h2>Wildcard capture</h2> 
+  <h5>Wildcard capture</h5> 
   <p>Let's consider the example:</p> 
   <pre><code class="language-java">public static void reverse(List&lt;?&gt; list) {
   List&lt;Object&gt; tmp = new ArrayList&lt;Object&gt;(list);
@@ -134,7 +134,7 @@ private static &lt;T&gt; void reverseCaptured(List&lt;T&gt; list) {
   }
 }</code></pre> 
   <p>Here we introduced a helper method <code class="language-java">reverseCaptured</code> which has a parameter of a certain type <code class="language-java">T</code> for all elements of a list. The method is error-free because it is merely a generic method; it does not face any restrictions due to wildcards.</p> 
-  <h2>Conclusion</h2> 
+  <h5>Conclusion</h5> 
   <p>Wildcards are a convenient and safe way of implementing an equivalent of inheritance in Generics. They are declared with the <code class="language-java">&lt;?&gt;</code> symbol and are widely used with upper or lower bounds to restrict type parameters.</p>
  </body>
 </html>

@@ -4,7 +4,7 @@
  <body>
   <p>Earlier, we considered in detail what trees are. Briefly, a <strong>tree </strong>is a data structure that allows storing data with a <strong>"parent-child"</strong> relationship. For example, the ‘boss-subordinate’ structure of a company can be represented as a tree. Recall that every tree is a connected graph that does not contain any cycles.</p> 
   <p>In this topic, we will learn how trees can be stored in computer memory and implement these approaches in Java.</p> 
-  <h2 style="text-align: center;">Implementing trees in Java</h2> 
+  <h5 style="text-align: center;">Implementing trees in Java</h5> 
   <p>Often, a <strong>tree </strong>means a <strong>binary tree</strong> since many algorithms are made specifically for them. But first, let’s take a look at the data structure for a non-binary tree where nodes can have more than two children:</p> 
   <pre><code class="language-java language-language-java">public class TreeNode&lt;T&gt; {
     public T data;
@@ -62,14 +62,14 @@
   <p>The code above builds the following tree:</p> 
   <p style="text-align: center;"><img alt="" src="https://ucarecdn.com/b9481a62-2fe1-4f2e-8e83-e6734ddf0231/"></p> 
   <p>As you may have guessed, curly brackets are not required: they were added as visual clues to reveal the tree’s structure.</p> 
-  <h2 style="text-align: center;">Another way to store trees in memory</h2> 
+  <h5 style="text-align: center;">Another way to store trees in memory</h5> 
   <p>Common ways of describing graphs (connectivity matrix, connectivity list, and incidence matrix) can also be used for describing trees since any tree is by definition a graph.</p> 
   <p>However, there is an even easier option for binary trees: they can be stored in arrays. If the node is numbered as $i$, then its children will have numbers $2 \cdot i$ and $2 \cdot i + 1$. Consider the following example:</p> 
   <p style="text-align: center;"><img alt="" src="https://ucarecdn.com/804bb4f5-477e-41b8-a83a-51f3e3e1653c/"></p> 
   <p>An array representing this binary tree looks like this:</p> 
   <pre><code class="java">1 2 3 4 5 6 7 8 9 10 11 12</code></pre> 
   <p>Let’s take node 5, for example. If we apply the above formula, its children will have numbers $10 = 5 \cdot 2$ and $11 = 5 \cdot 2+1$, which is exactly what we see in the picture.</p> 
-  <h2 style="text-align: center;"><strong>Conclusion</strong></h2> 
+  <h5 style="text-align: center;">Conclusion</h5> 
   <p>In this topic, we have learned several ways of how trees can be stored in computer memory and implemented one of these methods in Java. Now, you should be able to apply these methods to efficiently solve problems connected with processing trees. Move on to the practice exercises of this topic and try to solve some of such problems!</p>
  </body>
 </html>
