@@ -52,3 +52,4 @@ content:
 - Handling requests with bodies
 - Threads as objects (1)
 - Custom exceptions
+- Hierarchy of exceptions
