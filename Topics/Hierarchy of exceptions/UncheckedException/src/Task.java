@@ -1,4 +1,4 @@
-// write your answer here 
+// update the class
 class UncheckedException extends RuntimeException {
     public UncheckedException() {
 
