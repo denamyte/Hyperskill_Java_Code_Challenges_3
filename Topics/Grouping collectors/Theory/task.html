@@ -81,7 +81,7 @@ public class Account {
   <pre><code class="language-java">Map&lt;Status, Long&gt; sumByStatuses = accounts.stream()
         .collect(groupingBy(Account::getStatus, summingLong(Account::getBalance)));</code></pre> 
   <p>The code above groups accounts by the <code class="language-java">status</code> field and applies a downstream <code class="language-java">summingLong</code> collector to the <code class="language-java">List</code> values created by the <code class="language-java">groupingBy</code> operator. The resulting map contains the following entries:</p> 
-  <pre><code class="language-java">{ REMOVED=0, ACTIVE=24133, BLOCKED=60000 }</code></pre> 
+  <pre><code class="language-java">{ REMOVED=0, ACTIVE=27133, BLOCKED=60000 }</code></pre> 
   <h5>Teeing collector</h5> 
   <p>Java 12 introduced the <code class="language-java">teeing</code> collector which accepts two downstream collectors and a merger function as arguments and combines the results of the downstream collectors into the final result using the provided merger function. Let’s see how it works on an example using the same list of accounts as in the previous paragraph.</p> 
   <p>Suppose we want to extract the following information from the collection of accounts: the number of blocked accounts and the total amount of balances of the blocked accounts.</p> 
